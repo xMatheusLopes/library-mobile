@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Image, KeyboardAvoidingView } from 'react-native'
 
 import { Background } from './Styles';
 import { 
@@ -27,24 +27,31 @@ export default class Login extends Component {
             <Container>
                 <Background>
                     <Content contentContainerStyle={styles.content}>
-                        <Card style={styles.card}>
-                            <H2 style={styles.h2}>Entrar</H2>
-                            <Form>
-                                <Item style={styles.input}>
-                                    <Icon type="FontAwesome" active name='user' />
-                                    <Input placeholder="E-mail"/>
-                                </Item>
-                                <Item style={styles.input}>
-                                    <Icon type="FontAwesome" active name='key' />
-                                    <Input placeholder="Senha"/>
-                                </Item>
-                                <View style={styles.p8}>
-                                    <Button full style={styles.button}>
-                                        <Text>Entrar</Text>
-                                    </Button>
-                                </View>
-                            </Form>
-                        </Card>
+                        <KeyboardAvoidingView behavior="padding" style={{ flex: 1, justifyContent: 'center' }}>
+                            <Image
+                                style={styles.bookMarker}
+                                source={require('../../assets/marker.png')}
+                            />
+                            <Card style={styles.card}>
+                                <H2 style={styles.h2}>Entrar</H2>
+                                <Text style={styles.textCenter}>Coloque suas credenciais para acessar</Text>
+                                <Form>
+                                    <Item style={styles.input}>
+                                        <Icon type="FontAwesome" active name='user' />
+                                        <Input placeholder="E-mail"/>
+                                    </Item>
+                                    <Item style={styles.input}>
+                                        <Icon type="FontAwesome" active name='key' />
+                                        <Input secureTextEntry={true} placeholder="Senha"/>
+                                    </Item>
+                                    <View style={styles.p8}>
+                                        <Button full style={styles.button}>
+                                            <Text style={styles.bold}>ACESSAR</Text>
+                                        </Button>
+                                    </View>
+                                </Form>
+                            </Card>
+                        </KeyboardAvoidingView>
                     </Content>
                 </Background>
             </Container>
@@ -57,6 +64,13 @@ const styles = StyleSheet.create({
         padding: 16,
         flex: 1,
         justifyContent: 'center'
+    },
+    bookMarker: {
+        width: 50, 
+        height: 50,
+        bottom: -35,
+        left: 10,
+        zIndex: 1,
     },
     input: {
         backgroundColor: '#bfbfbf',
@@ -84,10 +98,17 @@ const styles = StyleSheet.create({
     },
     h2: {
         textAlign: 'center',
-        marginBottom: 24,
         marginTop: 24
     },
     button: {
         backgroundColor: Theme.Accent
+    },
+    textCenter: {
+        textAlign: 'center',
+        marginBottom: 24,
+        color: 'grey'
+    },
+    bold: {
+        fontWeight: 'bold'
     }
 });
