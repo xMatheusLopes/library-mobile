@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Image, KeyboardAvoidingView, ScrollView, Platform } from 'react-native'
 
-import { Background } from './Styles';
 import { 
     Button, 
     Text, 
@@ -24,7 +23,7 @@ interface login {
     password: string
 }
 
-const Login = () => {
+const Login = ({navigation}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -41,7 +40,8 @@ const Login = () => {
 
     const handleUser = async (data) => {
         if (data) {
-            setSession(data);
+            await setSession(data);
+            navigation.navigate('Dashboard');
         }
     }
 

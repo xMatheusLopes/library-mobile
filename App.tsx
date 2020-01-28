@@ -8,8 +8,8 @@
  * @format
  */
 import { createAppContainer } from 'react-navigation';
-import AppNavigator from './src/screens';
+import AppStack from './src/screens';
 
 import 'react-native-gesture-handler';
 
-export default createAppContainer(AppNavigator);
+export default createAppContainer(AppStack);
