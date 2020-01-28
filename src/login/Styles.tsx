@@ -3,7 +3,6 @@ import { Platform } from 'react-native'
 
 export const Background = styled.View`
   background: #f6ca1f;
-  flex: 1;
 `;
 
 // export const Card = styled.View`

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Image, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, View, Image, KeyboardAvoidingView, ScrollView, Platform } from 'react-native'
 
 import { Background } from './Styles';
 import { 
@@ -50,10 +50,10 @@ const Login = () => {
     }
 
     return (
-        <Container>
-            <Background>
+        <ScrollView contentContainerStyle={styles.scrollview}>
+            <Container style={styles.container}>
                 <Content contentContainerStyle={styles.content}>
-                    <KeyboardAvoidingView behavior="padding" style={{ flex: 1, justifyContent: 'center' }}>
+                    <KeyboardAvoidingView>
                         <Image
                             style={styles.bookMarker}
                             source={require('../../assets/img/marker.png')}
@@ -79,8 +79,8 @@ const Login = () => {
                         </Card>
                     </KeyboardAvoidingView>
                 </Content>
-            </Background>
-        </Container>
+            </Container>
+        </ScrollView>
     )
     
 }
@@ -94,15 +94,15 @@ export default Login;
 const styles = StyleSheet.create({
     content: {
         padding: 16,
-        flex: 1,
+        minHeight: '100%',
         justifyContent: 'center'
     },
     bookMarker: {
         width: 50, 
         height: 50,
-        bottom: -35,
         left: 10,
         zIndex: 1,
+        elevation: 11,
         resizeMode: 'contain'
     },
     input: {
@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 1,
         shadowRadius: 10.27,
-
         elevation: 10,
+        top: -40
     },
     p8: {
         padding: 8
@@ -143,5 +143,14 @@ const styles = StyleSheet.create({
     },
     bold: {
         fontWeight: 'bold'
+    },
+    scrollview: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    container: {
+        backgroundColor: "#f6ca1f",
+        flex: 1,
+        justifyContent: 'center'
     }
 });
