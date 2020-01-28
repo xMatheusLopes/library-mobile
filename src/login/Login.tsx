@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View, Image, KeyboardAvoidingView } from 'react-native'
 
 import { Background } from './Styles';
@@ -16,48 +16,80 @@ import {
 } from 'native-base';
 
 import { Theme } from '../../Theme';
+import { api } from '../utils/services/api';
+import { setSession, getSession } from '../utils/services/session';
 
-export default class Login extends Component {
-    static navigationOptions = {
-        headerShown: false,
-    };
-
-    render() {
-        return (
-            <Container>
-                <Background>
-                    <Content contentContainerStyle={styles.content}>
-                        <KeyboardAvoidingView behavior="padding" style={{ flex: 1, justifyContent: 'center' }}>
-                            <Image
-                                style={styles.bookMarker}
-                                source={require('../../assets/marker.png')}
-                            />
-                            <Card style={styles.card}>
-                                <H2 style={styles.h2}>Entrar</H2>
-                                <Text style={styles.textCenter}>Coloque suas credenciais para acessar</Text>
-                                <Form>
-                                    <Item style={styles.input}>
-                                        <Icon type="FontAwesome" active name='user' />
-                                        <Input placeholder="E-mail"/>
-                                    </Item>
-                                    <Item style={styles.input}>
-                                        <Icon type="FontAwesome" active name='key' />
-                                        <Input secureTextEntry={true} placeholder="Senha"/>
-                                    </Item>
-                                    <View style={styles.p8}>
-                                        <Button full style={styles.button}>
-                                            <Text style={styles.bold}>ACESSAR</Text>
-                                        </Button>
-                                    </View>
-                                </Form>
-                            </Card>
-                        </KeyboardAvoidingView>
-                    </Content>
-                </Background>
-            </Container>
-        )
-    }
+interface login {
+    email: string,
+    password: string
 }
+
+const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const submit = async () => {
+        let data: login = { email, password }
+
+        try {
+            const response = await api.post('login', data);
+            handleUser(response.data);
+        } catch(e) {
+            handleError(e);
+        }
+    }
+
+    const handleUser = async (data) => {
+        if (data) {
+            setSession(data);
+        }
+    }
+
+    const handleError = (e) => {
+        console.log(e);
+    }
+
+    return (
+        <Container>
+            <Background>
+                <Content contentContainerStyle={styles.content}>
+                    <KeyboardAvoidingView behavior="padding" style={{ flex: 1, justifyContent: 'center' }}>
+                        <Image
+                            style={styles.bookMarker}
+                            source={require('../../assets/img/marker.png')}
+                        />
+                        <Card style={styles.card}>
+                            <H2 style={styles.h2}>Entrar</H2>
+                            <Text style={styles.textCenter}>Coloque suas credenciais para acessar</Text>
+                            <Form>
+                                <Item style={styles.input}>
+                                    <Icon type="FontAwesome" active name='user' />
+                                    <Input autoCapitalize="none" placeholder="E-mail" onChangeText={(text) => setEmail(text)}/>
+                                </Item>
+                                <Item style={styles.input}>
+                                    <Icon type="FontAwesome" active name='key' />
+                                    <Input autoCapitalize="none" secureTextEntry={true} placeholder="Senha" onChangeText={(text) => setPassword(text)}/>
+                                </Item>
+                                <View style={styles.p8}>
+                                    <Button onPress={() => submit()} full style={styles.button}>
+                                        <Text style={styles.bold}>ACESSAR</Text>
+                                    </Button>
+                                </View>
+                            </Form>
+                        </Card>
+                    </KeyboardAvoidingView>
+                </Content>
+            </Background>
+        </Container>
+    )
+    
+}
+
+Login.navigationOptions = {
+    headerShown: false
+}
+
+export default Login;
 
 const styles = StyleSheet.create({
     content: {
@@ -71,6 +103,7 @@ const styles = StyleSheet.create({
         bottom: -35,
         left: 10,
         zIndex: 1,
+        resizeMode: 'contain'
     },
     input: {
         backgroundColor: '#bfbfbf',
