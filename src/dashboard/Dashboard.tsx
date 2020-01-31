@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
+import { createStackNavigator } from 'react-navigation-stack';
+
 const Dashboard = () => {
     return (
         <View>
@@ -12,5 +14,9 @@ const Dashboard = () => {
 Dashboard.navigationOptions = {
     title: 'Dashboard'
 }
+
+export const DashboardNavigator = createStackNavigator({
+    Dashboard: { screen: Dashboard }
+});
 
 export default Dashboard

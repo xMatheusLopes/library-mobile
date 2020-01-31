@@ -1,22 +1,34 @@
+// React
 import React, { useState } from 'react'
-import { StyleSheet, View, Image, KeyboardAvoidingView, ScrollView, Platform } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native'
 
-import { 
-    Button, 
-    Text, 
-    Input, 
-    Container, 
-    Content, 
-    Card, 
+// Native Base
+import {    
+    Content,  
     Form, 
-    Item,
-    H2,
+    Input,
     Icon
 } from 'native-base';
 
-import { Theme } from '../../Theme';
+// Styles
+import { 
+    Container, 
+    ElevatedView, 
+    BookMarker,
+    Card, 
+    H2, 
+    TextCenter, 
+    TextAccess, 
+    Item, 
+    ViewAccessButton,
+    Button
+ } from './Styles';
+ import { content, scrollview } from '../utils/styles/Styles'
+
+// General
 import { api } from '../utils/services/api';
-import { setSession, getSession } from '../utils/services/session';
+import { setSession } from '../utils/services/session';
+import User from '../user/user.model';
 
 interface login {
     email: string,
@@ -38,43 +50,44 @@ const Login = ({navigation}) => {
         }
     }
 
-    const handleUser = async (data) => {
+    const handleUser = (data: User) => {
         if (data) {
-            await setSession(data);
+            setSession(data);
             navigation.navigate('Dashboard');
         }
     }
 
-    const handleError = (e) => {
+    const handleError = (e: string) => {
         console.log(e);
     }
 
     return (
         <ScrollView contentContainerStyle={styles.scrollview}>
-            <Container style={styles.container}>
+            <Container>
                 <Content contentContainerStyle={styles.content}>
                     <KeyboardAvoidingView>
-                        <Image
-                            style={styles.bookMarker}
-                            source={require('../../assets/img/marker.png')}
-                        />
-                        <Card style={styles.card}>
-                            <H2 style={styles.h2}>Entrar</H2>
-                            <Text style={styles.textCenter}>Coloque suas credenciais para acessar</Text>
+                        <ElevatedView>
+                            <BookMarker
+                                source={require('../../assets/img/marker.png')}
+                            />
+                        </ElevatedView>
+                        <Card>
+                            <H2>Entrar</H2>
+                            <TextCenter>Coloque suas credenciais para acessar</TextCenter>
                             <Form>
-                                <Item style={styles.input}>
+                                <Item>
                                     <Icon type="FontAwesome" active name='user' />
                                     <Input autoCapitalize="none" placeholder="E-mail" onChangeText={(text) => setEmail(text)}/>
                                 </Item>
-                                <Item style={styles.input}>
+                                <Item>
                                     <Icon type="FontAwesome" active name='key' />
                                     <Input autoCapitalize="none" secureTextEntry={true} placeholder="Senha" onChangeText={(text) => setPassword(text)}/>
                                 </Item>
-                                <View style={styles.p8}>
-                                    <Button onPress={() => submit()} full style={styles.button}>
-                                        <Text style={styles.bold}>ACESSAR</Text>
+                                <ViewAccessButton>
+                                    <Button onPress={() => submit()} full>
+                                        <TextAccess>ACESSAR</TextAccess>
                                     </Button>
-                                </View>
+                                </ViewAccessButton>
                             </Form>
                         </Card>
                     </KeyboardAvoidingView>
@@ -91,66 +104,6 @@ Login.navigationOptions = {
 
 export default Login;
 
-const styles = StyleSheet.create({
-    content: {
-        padding: 16,
-        minHeight: '100%',
-        justifyContent: 'center'
-    },
-    bookMarker: {
-        width: 50, 
-        height: 50,
-        left: 10,
-        zIndex: 1,
-        elevation: 11,
-        resizeMode: 'contain'
-    },
-    input: {
-        backgroundColor: '#bfbfbf',
-        paddingHorizontal: 10,
-        paddingVertical: 4,
-        marginRight: 14,
-        borderRadius: 8,
-        marginBottom: 14
-    },
-    card: {
-        padding: 8,
-        borderRadius: 8,
-        shadowColor: "#f4a600",
-        shadowOffset: {
-            width: 10,
-            height: 10,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 10.27,
-        elevation: 10,
-        top: -40
-    },
-    p8: {
-        padding: 8
-    },
-    h2: {
-        textAlign: 'center',
-        marginTop: 24
-    },
-    button: {
-        backgroundColor: Theme.Accent
-    },
-    textCenter: {
-        textAlign: 'center',
-        marginBottom: 24,
-        color: 'grey'
-    },
-    bold: {
-        fontWeight: 'bold'
-    },
-    scrollview: {
-        flex: 1,
-        justifyContent: 'center'
-    },
-    container: {
-        backgroundColor: "#f6ca1f",
-        flex: 1,
-        justifyContent: 'center'
-    }
-});
+const styles = StyleSheet.create({ content, scrollview });
+
+

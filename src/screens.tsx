@@ -1,17 +1,12 @@
+// Navigation
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from "react-navigation-drawer";
 
+// Stack
 import Login from './login/Login';
-import Dashboard from './dashboard/Dashboard';
 
-const DashboardNavigator = createStackNavigator({
-    Dashboard: {
-        screen: Dashboard,
-        navigationOptions: {
-            title: 'Dashboard'
-        }
-    }
-});
+// Drawer
+import { DashboardNavigator } from './dashboard/Dashboard';
 
 const drawerScreens = createDrawerNavigator({
     Dashboard: DashboardNavigator,
