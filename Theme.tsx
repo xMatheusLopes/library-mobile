@@ -1,4 +1,5 @@
 export const Theme = {
     Primary: "#f4a600",
-    Accent: "black"
+    Accent: "#000",
+    Disabled: "#bfbfbf"
 }

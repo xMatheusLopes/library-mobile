@@ -7,9 +7,23 @@
  *
  * @format
  */
+import React from 'react'
+
 import { createAppContainer } from 'react-navigation';
 import AppStack from './src/screens';
 
 import 'react-native-gesture-handler';
+import { Root, StyleProvider } from 'native-base';
 
-export default createAppContainer(AppStack);
+import getTheme from './native-base-theme/components';
+import custom from './native-base-theme/variables/custom';
+
+const AppNavigator = createAppContainer(AppStack);
+
+export default () => 
+    <StyleProvider style={getTheme(custom)}>
+        <Root>
+            <AppNavigator />
+        </Root>
+    </StyleProvider>
+;

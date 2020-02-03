@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Theme } from '../../Theme';
 
 import { 
     Container as NBContainer,
@@ -7,7 +6,6 @@ import {
     H2 as NBH2,
     Text as NBText,
     Item as NBItem,
-    Button as NBButton
  } from 'native-base';
 
 export const Container = styled(NBContainer)`
@@ -46,24 +44,30 @@ export const TextCenter = styled(NBText)`
     color: grey;
 `;
 
-export const TextAccess = styled(NBText)`
-    font-weight: bold;
+export const ViewItem = styled.View`
+    margin-bottom: 14px;
+    margin-right: 14px;
+`;
+
+export const TextError = styled(NBText)`
+    color: red;
+    margin-left: 14px
 `;
 
 export const Item = styled(NBItem)`
     background-color: #bfbfbf;
     padding-horizontal: 10px;
     padding-vertical: 4px;
-    margin-right: 14px;
     border-radius: 8px;
-    margin-bottom: 14px;
 `;
 
 export const ViewAccessButton = styled.View`
     padding: 8px;
 `;
 
-export const Button = styled(NBButton)`
-    background-color: ${Theme.Accent}
+export const ActivityIndicator = styled.ActivityIndicator`
+    position: absolute;
+    right: 5px
 `;
+
 

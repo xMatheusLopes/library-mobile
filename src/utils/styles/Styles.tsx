@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Platform, StyleSheet, ViewStyle } from 'react-native'
+import { Platform, ViewStyle } from 'react-native'
 
 export const PrimaryText = styled.Text`
   color: ${Platform.OS === 'android' ? '#3F51B5' : '#007aff'}
