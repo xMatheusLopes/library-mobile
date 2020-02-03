@@ -58,20 +58,11 @@ const Login = ({navigation}) => {
     const AccessButton = ({ handleSubmit, errors }) => {
         const hasError = Object.keys(errors).length !== 0;
 
-        const Text = styled(NBText)`
-            font-weight: bold;
-            color: ${hasError || isSubmitting ? 'grey' : 'white'}
-        `;
-
-        const Button = styled(NBButton)`
-            background-color: ${hasError || isSubmitting ? Theme.Disabled : Theme.Accent};
-        `;
-
         return (
-            <Button disabled={isSubmitting || hasError} onPress={handleSubmit} block dark>
-                <Text>ACESSAR</Text>
+            <NBButton dark disabled={isSubmitting || hasError} onPress={handleSubmit} block>
+                <NBText>ACESSAR</NBText>
                 <ActivityIndicator size="large" color={Theme.Accent} animating={isSubmitting} />
-            </Button>
+            </NBButton>
         )
     }
 
