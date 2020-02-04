@@ -29,7 +29,7 @@ export const getSession = async () => {
     }
 }
 
-export const removeSession = async (id: number) => {
+export const removeSession = async () => {
     try {
         await AsyncStorage.removeItem('session');
         return true;

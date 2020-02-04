@@ -20,10 +20,16 @@ import custom from './native-base-theme/variables/custom';
 
 const AppNavigator = createAppContainer(AppStack);
 
-export default () => 
-    <StyleProvider style={getTheme(custom)}>
-        <Root>
-            <AppNavigator />
-        </Root>
-    </StyleProvider>
-;
+import { getSession } from './src/utils/services/session';
+
+const App = () => {
+    return (
+        <StyleProvider style={getTheme(custom)}>
+            <Root>
+                <AppNavigator />
+            </Root>
+        </StyleProvider>
+    );
+}
+export default App;
+    

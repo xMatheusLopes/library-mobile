@@ -4,28 +4,38 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 
 // Stack
 import Login from './login/Login';
+import Boot from './boot';
 
 // Drawer
 import { DashboardNavigator } from './dashboard/Dashboard';
 
-const drawerScreens = createDrawerNavigator({
+// Session
+import { getSession } from './utils/services/session';
+
+const DrawerScreens = createDrawerNavigator({
     Dashboard: DashboardNavigator,
 }, {
     initialRouteName: 'Dashboard'
 });
 
 const AppStack = createStackNavigator({
-    drawerScreens: {
-        screen: drawerScreens,
+    DrawerScreens: {
+        screen: DrawerScreens,
         navigationOptions: {
             headerShown: false
         }
     },
     Login: {
-      screen: Login
+        screen: Login
+    },
+    Boot: {
+        screen: Boot,
+        navigationOptions: {
+            headerShown: false
+        }
     }
   }, {
-    initialRouteName: 'Login',
+    initialRouteName: 'Boot',
 });
 
 export default AppStack;
