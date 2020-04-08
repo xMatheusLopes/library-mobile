@@ -4,20 +4,25 @@ import { View, Text } from 'react-native'
 import { createStackNavigator } from 'react-navigation-stack';
 
 import { removeSession } from '../utils/services/session';
+import { Theme, ThemeHeader } from '../../Theme';
+import { Header } from '../layout/Header';
 
-const Dashboard = () => {
+const Dashboard = ({navigation}) => {
     useEffect(() => {
         // removeSession()
     }, []);
     return (
-        <View>
-            <Text></Text>
+        <View style={{ flex: 1 }}>
+            <Header navigation={navigation} Right={null}/>
+            <View style={{ flex: 1, backgroundColor: Theme.DarkContent }}>
+
+            </View>
         </View>
     )
 }
 
 Dashboard.navigationOptions = {
-    title: 'Dashboard'
+    headerShown: false
 }
 
 export const DashboardNavigator = createStackNavigator({
