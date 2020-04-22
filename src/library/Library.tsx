@@ -6,6 +6,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { Theme } from '../../Theme';
 import Header from '../layout/Header';
 import { Card, Container, Name, Author, Image, Price, BuyBtn, BuyBtnText, Icon, BuyBtnView } from './Styles';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Content } from 'native-base';
 
 const Library = () => {
     const items = [
@@ -99,18 +101,20 @@ const Library = () => {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: Theme.Dark}}>
             <Header Right={null} HeaderTitle='Biblioteca'/>
-            <View style={{ flex: 1, backgroundColor: Theme.DarkContent }}>
-                <Container>
-                    <FlatList
-                        data={items}
-                        renderItem={({ item }) => <ItemCard item={item} />}
-                        keyExtractor={item => item.id}
-                        numColumns={2}
-                    />
-                </Container>
-            </View>
+            <Content>
+                <View style={{ flex: 1, backgroundColor: Theme.DarkContent }}>
+                    <Container>
+                        <FlatList
+                            data={items}
+                            renderItem={({ item }) => <ItemCard item={item} />}
+                            keyExtractor={item => item.id}
+                            numColumns={2}
+                        />
+                    </Container>
+                </View>
+            </Content>
         </View>
     )
 }
