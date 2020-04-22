@@ -80,7 +80,7 @@ const Login = ({navigation}) => {
     const handleUser = async (data: User) => {
         if (data) {
             setSession(data);
-            navigation.navigate('Dashboard');
+            navigation.navigate('Library');
         } else {
             Toast.show({
                 text: "E-mail e/ou senha inválido",

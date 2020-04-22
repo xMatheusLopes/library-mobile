@@ -13,8 +13,8 @@ const boot = ({navigation}) => {
     
     useEffect(() => {
         async function handleSession() {
-            await getSession() 
-            ? navigation.navigate('Dashboard')
+            await getSession()  
+            ? navigation.navigate('Library')
             : navigation.navigate('Login')
         }
 

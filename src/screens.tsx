@@ -9,7 +9,7 @@ import Login from './login/Login';
 import Boot from './boot';
 
 // Drawer
-import { DashboardNavigator } from './dashboard/Dashboard';
+import { LibraryNavigator } from './library/Library';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Theme } from '../Theme';
@@ -17,6 +17,8 @@ import styled from 'styled-components'
 
 // Session
 import { getSession } from './utils/services/session';
+import { BookNavigator } from './book/Book';
+import { permissions } from './permissions';
 
 const CustomDrawerComponent = (props) => (
     <View>
@@ -28,10 +30,23 @@ const CustomDrawerComponent = (props) => (
     </View>
 )
 
-const DrawerScreens = createDrawerNavigator({
-    Dashboard: DashboardNavigator,
-}, {
-    initialRouteName: 'Dashboard',
+// Items of menu
+const items = {
+    Biblioteca: LibraryNavigator,
+    Livros: BookNavigator
+};
+
+// TODO get from logged user
+const myProfileUser = 1;
+
+for (const key in items) {
+    if (!permissions[key].includes(myProfileUser)) {
+        delete items[key];
+    }
+}
+
+const DrawerScreens = createDrawerNavigator(items, {
+    initialRouteName: 'Biblioteca',
     contentComponent: CustomDrawerComponent
 });
 

@@ -3,8 +3,9 @@ import React from 'react';
 import { Left, Icon, Title, Body, Button, Header as NBHeader, Right as NBRight } from 'native-base';
 import { Theme } from '../../Theme';
 import { StatusBar } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-export const Header = ({navigation, Right}) => {
+const Header = ({navigation, Right, HeaderTitle}) => {
     if (!Right) {
         Right = NBRight
     }
@@ -19,9 +20,11 @@ export const Header = ({navigation, Right}) => {
                 </Button>
             </Left>
             <Body>
-                <Title style={{ color: Theme.Primary }}>Dashboard</Title>
+                <Title style={{ color: Theme.Primary }}>{HeaderTitle}</Title>
             </Body>
             <Right />
         </NBHeader>
     );
 }
+
+export default withNavigation(Header);
