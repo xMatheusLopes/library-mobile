@@ -1,14 +1,53 @@
-import React, { useState, useEffect } from 'react'
-import { View, FlatList } from 'react-native'
+// Native
+import React, { useState, useEffect, useRef } from 'react'
+import { View, FlatList, Animated } from 'react-native'
 
+// Navigation
 import { createStackNavigator } from 'react-navigation-stack';
 
+// Native Base
+import { 
+    Content, 
+    Right, 
+    Button, 
+    ActionSheet, 
+    Form, 
+    Input 
+} from 'native-base';
+
+// Styles
 import { Theme } from '../../Theme';
+import { 
+    Card, 
+    Container, 
+    Name, 
+    Author, 
+    Image, 
+    Price, 
+    BuyBtn, 
+    BuyBtnText, 
+    Icon, 
+    BuyBtnView,
+    Item
+} from './Styles';
+
+// Layout
 import Header from '../layout/Header';
-import { Card, Container, Name, Author, Image, Price, BuyBtn, BuyBtnText, Icon, BuyBtnView } from './Styles';
-import { Content, Right, Button, ActionSheet, Form, Item, Label, Input } from 'native-base';
+
+// Utils
+import { formatCurrency } from '../utils/services/pipes';
 
 const Library = () => {
+    // Hooks
+    const [clicked, setClicked] = useState(null);
+    const [showSearch, setShowSearch] = useState(false);
+    const [translateYValue, setTranslateYValue] = useState(new Animated.Value(-100));
+
+    useEffect(() => {
+        handleAction();
+    }, [clicked])
+
+    // TODO load from api
     const items = [
         {
             id: '1',
@@ -68,56 +107,47 @@ const Library = () => {
         },
     ];
 
-    const formatCurrency = (value) => {
-        return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    }
-
-    const ItemCard = ({item}) => {
-        return (
-                <Card>
-                    <Image
-                        source={{ uri: item.picture}}
-                    />
-                    <Name>
-                        {item.name}
-                    </Name>
-                    <Author>
-                        {item.author}
-                    </Author>
-                    <Price>
-                        {formatCurrency(item.price)}
-                    </Price>
-                    <BuyBtn>
-                        <BuyBtnView>
-                            <Icon name='add' />
-                            <BuyBtnText>
-                                CARRINHO
-                            </BuyBtnText>
-                        </BuyBtnView>
-                    </BuyBtn>
-                </Card>
-            )
-    }
-
+    /**
+     * Options: BUTTONS, DESTRUCTIVE_INDEX, CANCEL_INDEX
+     */
     const BUTTONS = ["Pesquisar", "Cancelar"];
-    // const DESTRUCTIVE_INDEX = 1;
     const CANCEL_INDEX = 1;
 
-    const [clicked, setClicked] = useState(null);
-    const [showSearch, setShowSearch] = useState(false);
-    const [searchInput, setSearchInput] = useState(null);
+    const showTransitionAnim = () => {
+            Animated.timing(
+                translateYValue, 
+                { 
+                    toValue: 1,
+                    duration: 1000 
+                }
+            ).start();
+    }
 
+    const hideTransitionAnim = () => {
+        Animated.timing(
+            translateYValue, 
+            { 
+                toValue: -100,
+                duration: 1000 
+            }
+        ).start();
+    }
+
+    // Handle actions from Right item 
     const handleAction = () => {
         switch(clicked) {
             case 0:
                 setShowSearch(true);
+                showTransitionAnim();
                 break;
         }
     }
-    useEffect(() => {
-        handleAction();
-    }, [clicked])
+    
+    /**
+     * Componentes
+     */
 
+    // Right Actions
     const RightContent = () => {
         return (
             <Right>
@@ -141,32 +171,55 @@ const Library = () => {
         );
     }
 
-    const Search = () => {
-        if (showSearch) {
-            return (
-                <Form style={{ marginRight: 12}}>
-                    <Item>
-                        <Input
-                            autoFocus={showSearch}
-                            placeholder="Pesquisar" />
-                    </Item>
-                </Form>
-            );
-        }
-
-        return null;
-    }
-
     return (
-        <View style={{ flex: 1, backgroundColor: Theme.Dark}}>
+        <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
             <Header HeaderTitle='Biblioteca' Right={RightContent}/>
             <Content>
-                <Search />
+                    { showSearch && 
+                        (
+                            <Animated.View 
+                                style={{ 
+                                    height: translateYValue.interpolate({
+                                        inputRange: [-100, -80, -60, -40, -20, -10, 1],
+                                        outputRange: [0, 10, 20, 30, 40, 50, 65],
+                                    }),
+                                    transform: [ { translateY: translateYValue } ] 
+                                }}>
+                                <Form style={{ marginRight: 16}}>
+                                        <Item>
+                                            <Icon type='FontAwesome5' active name='search' />
+                                            <Input autoFocus={showSearch} placeholder="Pesquisar" />
+                                            <Icon onPress={() => {
+                                                hideTransitionAnim();
+                                                setClicked(null);
+                                                setTimeout(() => {
+                                                    setShowSearch(false);
+                                                }, 1000);
+                                            }} type='FontAwesome' name='close' />
+                                        </Item>
+                                </Form>
+                            </Animated.View>
+                        )
+                    }
+                
                 <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
                     <Container>
                         <FlatList
                             data={items}
-                            renderItem={({ item }) => <ItemCard item={item} />}
+                            renderItem={({ item }) => (
+                                <Card>
+                                    <Image source={{ uri: item.picture}} />
+                                    <Name> {item.name} </Name>
+                                    <Author> {item.author} </Author>
+                                    <Price> {formatCurrency(item.price)} </Price>
+                                    <BuyBtn>
+                                        <BuyBtnView>
+                                            <Icon name='add' />
+                                            <BuyBtnText> CARRINHO </BuyBtnText>
+                                        </BuyBtnView>
+                                    </BuyBtn>
+                                </Card>
+                            )}
                             keyExtractor={item => item.id}
                             numColumns={2}
                         />
@@ -177,6 +230,9 @@ const Library = () => {
     )
 }
 
+/**
+ * Navigation
+ */
 Library.navigationOptions = {
     headerShown: false
 }

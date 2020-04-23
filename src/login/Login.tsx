@@ -1,6 +1,6 @@
 // React
 import React, { useState } from 'react'
-import { StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView, ScrollView, StatusBar } from 'react-native'
 
 // Native Base
 import {    
@@ -104,6 +104,7 @@ const Login = ({navigation}) => {
 
     return (
         <ScrollView contentContainerStyle={styles.scrollview}>
+            <StatusBar barStyle="dark-content" />
             <Container>
                 <Content contentContainerStyle={styles.content}>
                     <KeyboardAvoidingView>

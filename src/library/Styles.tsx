@@ -4,7 +4,10 @@ import { Theme } from '../../Theme';
 
 import { Dimensions } from 'react-native';
 
-import { Icon as NBIcon } from 'native-base';
+import { 
+    Icon as NBIcon,
+    Item as NBItem
+} from 'native-base';
 
 export const Card = styled.View`
     width: ${Dimensions.get('window').width / 2 - 20}px;
@@ -21,7 +24,7 @@ export const Name = styled.Text`
 
 export const Author = styled.Text`
     font-size: 12px;
-    color: ${Theme.DarkContent}
+    color: ${Theme.Accent}
 `;
 
 export const Container = styled.View`
@@ -31,7 +34,7 @@ export const Container = styled.View`
 export const Image = styled.Image`
     resize-mode: contain;
     height: 284px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 `;
 
 export const Price = styled.Text`
@@ -62,4 +65,11 @@ export const Icon = styled(NBIcon)`
     margin-right: 5px; 
     font-size: 20px;
     color: ${Theme.Dark}
+`;
+
+export const Item = styled(NBItem)`
+    background-color: #bfbfbf;
+    padding-horizontal: 10px;
+    padding-vertical: 4px;
+    border-radius: 8px;
 `;
