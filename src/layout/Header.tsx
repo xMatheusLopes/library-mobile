@@ -16,7 +16,7 @@ const Header = ({navigation, Right, HeaderTitle}) => {
                 <Button
                 transparent
                 onPress={() => navigation.toggleDrawer()}>
-                <Icon name="menu" />
+                <Icon type="FontAwesome5" style={{ fontSize: 22, marginLeft: 10 }} name="bars" />
                 </Button>
             </Left>
             <Body>

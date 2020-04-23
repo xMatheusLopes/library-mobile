@@ -2,13 +2,15 @@ import styled from 'styled-components';
 
 import { Theme } from '../../Theme';
 
+import { Dimensions } from 'react-native';
+
 import { Icon as NBIcon } from 'native-base';
 
 export const Card = styled.View`
-    flex: 0.5;
-    background-color: ${Theme.Dark};
-    padding: 8px;
-    margin: 5px;
+    width: ${Dimensions.get('window').width / 2 - 20}px;
+    margin: 10px;
+    background-color: ${Theme.DarkContent};
+    padding: 12px;
     border-radius: 8px;
 `;
 
@@ -33,7 +35,7 @@ export const Image = styled.Image`
 `;
 
 export const Price = styled.Text`
-    color: green;
+    color: #00cc00;
     font-size: 16px;
 `;
 
@@ -58,5 +60,6 @@ export const BuyBtnView = styled.View`
 
 export const Icon = styled(NBIcon)`
     margin-right: 5px; 
-    font-size: 20px
+    font-size: 20px;
+    color: ${Theme.Dark}
 `;

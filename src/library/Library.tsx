@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, FlatList } from 'react-native'
 
 import { createStackNavigator } from 'react-navigation-stack';
@@ -6,8 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { Theme } from '../../Theme';
 import Header from '../layout/Header';
 import { Card, Container, Name, Author, Image, Price, BuyBtn, BuyBtnText, Icon, BuyBtnView } from './Styles';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Content } from 'native-base';
+import { Content, Right, Button, ActionSheet, Form, Item, Label, Input } from 'native-base';
 
 const Library = () => {
     const items = [
@@ -100,11 +99,70 @@ const Library = () => {
             )
     }
 
+    const BUTTONS = ["Pesquisar", "Cancelar"];
+    // const DESTRUCTIVE_INDEX = 1;
+    const CANCEL_INDEX = 1;
+
+    const [clicked, setClicked] = useState(null);
+    const [showSearch, setShowSearch] = useState(false);
+    const [searchInput, setSearchInput] = useState(null);
+
+    const handleAction = () => {
+        switch(clicked) {
+            case 0:
+                setShowSearch(true);
+                break;
+        }
+    }
+    useEffect(() => {
+        handleAction();
+    }, [clicked])
+
+    const RightContent = () => {
+        return (
+            <Right>
+                <Button
+                    transparent
+                    onPress={() =>
+                        ActionSheet.show(
+                          {
+                            options: BUTTONS,
+                            cancelButtonIndex: CANCEL_INDEX,
+                            // destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                            // title: "Testing ActionSheet"
+                          },
+                          buttonIndex => {
+                            setClicked(buttonIndex);
+                          }
+                        )}>
+                    <Icon type="FontAwesome5" style={{color: Theme.Primary}} name="ellipsis-v" />
+                </Button>
+            </Right>
+        );
+    }
+
+    const Search = () => {
+        if (showSearch) {
+            return (
+                <Form style={{ marginRight: 12}}>
+                    <Item>
+                        <Input
+                            autoFocus={showSearch}
+                            placeholder="Pesquisar" />
+                    </Item>
+                </Form>
+            );
+        }
+
+        return null;
+    }
+
     return (
         <View style={{ flex: 1, backgroundColor: Theme.Dark}}>
-            <Header Right={null} HeaderTitle='Biblioteca'/>
+            <Header HeaderTitle='Biblioteca' Right={RightContent}/>
             <Content>
-                <View style={{ flex: 1, backgroundColor: Theme.DarkContent }}>
+                <Search />
+                <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
                     <Container>
                         <FlatList
                             data={items}
