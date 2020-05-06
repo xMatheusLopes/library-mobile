@@ -1,15 +1,10 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
 import User from '../../user/user.model';
+import { api } from './api';
 
-interface session {
-    id: number,
-    accessKey: string
-}
-
-export const setSession = (data: User): session => {
-    const { id, accessKey } = data;
-    const item = { id, accessKey };
+export const setSession = (data: User) => {
+    const item = data;
 
     try {
         AsyncStorage.setItem('session', JSON.stringify(item));
