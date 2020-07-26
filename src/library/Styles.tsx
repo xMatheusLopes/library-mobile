@@ -50,6 +50,14 @@ export const BuyBtn = styled.TouchableOpacity`
     margin-top: 5px;
 `;
 
+export const PurshasedBtn = styled.TouchableOpacity`
+    background-color: #00cc00;
+    padding: 8px;
+    align-items: center;
+    border-radius: 6px;
+    margin-top: 5px;
+`;
+
 export const BuyBtnText = styled.Text`
     color: ${Theme.Dark};
     font-weight: bold;

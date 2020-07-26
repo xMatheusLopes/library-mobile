@@ -25,7 +25,8 @@ import {
     Image, 
     Price, 
     BuyBtn, 
-    BuyBtnText, 
+    BuyBtnText,
+    PurshasedBtn, 
     Icon, 
     BuyBtnView,
     Item
@@ -48,14 +49,15 @@ const Library = () => {
     }, [clicked])
 
     // TODO load from api
-    const items = [
+    const [items, setItems] = useState([
         {
             id: '1',
             picture: 'https://images-na.ssl-images-amazon.com/images/I/91cO-IrKBpL.jpg',
             name: 'The Witcher',
             author: 'Andrzej Sapkowski',
             status: 1,
-            price: 40.00
+            price: 40.00,
+            purshased: false
         },
         {
             id: '2',
@@ -63,7 +65,8 @@ const Library = () => {
             name: 'The Witcher 2',
             author: 'Andrzej Sapkowski',
             status: 1,
-            price: 50.00
+            price: 50.00,
+            purshased: false
         },
         {
             id: '3',
@@ -71,7 +74,8 @@ const Library = () => {
             name: 'The Witcher 3',
             author: 'Andrzej Sapkowski',
             status: 1,
-            price: 50.00
+            price: 50.00,
+            purshased: false
         },
         {
             id: '4',
@@ -87,7 +91,8 @@ const Library = () => {
             name: 'The Witcher 5',
             author: 'Andrzej Sapkowski',
             status: 1,
-            price: 40.00
+            price: 40.00,
+            purshased: false
         },
         {
             id: '6',
@@ -95,7 +100,8 @@ const Library = () => {
             name: 'The Witcher 6',
             author: 'Andrzej Sapkowski',
             status: 1,
-            price: 40.00
+            price: 40.00,
+            purshased: false
         },
         {
             id: '7',
@@ -103,9 +109,10 @@ const Library = () => {
             name: 'The Witcher 7',
             author: 'Andrzej Sapkowski',
             status: 1,
-            price: 40.00
+            price: 40.00,
+            purshased: false
         },
-    ];
+    ]);
 
     /**
      * Options: BUTTONS, DESTRUCTIVE_INDEX, CANCEL_INDEX
@@ -142,6 +149,11 @@ const Library = () => {
                 break;
         }
     }
+    const buyBook = (index: number) => {
+        const newItems = [...items]
+        newItems[index].purshased = true
+        setItems(newItems)
+    }
     
     /**
      * Componentes
@@ -165,7 +177,7 @@ const Library = () => {
                             setClicked(buttonIndex);
                           }
                         )}>
-                    <Icon type="FontAwesome5" style={{color: Theme.Primary}} name="ellipsis-v" />
+                    <Icon type="FontAwesome5" style={{color: Theme.Dark}} name="ellipsis-v" />
                 </Button>
             </Right>
         );
@@ -206,18 +218,33 @@ const Library = () => {
                     <Container>
                         <FlatList
                             data={items}
-                            renderItem={({ item }) => (
+                            renderItem={({ item, index }) => (
                                 <Card>
                                     <Image source={{ uri: item.picture}} />
                                     <Name> {item.name} </Name>
                                     <Author> {item.author} </Author>
                                     <Price> {formatCurrency(item.price)} </Price>
-                                    <BuyBtn>
-                                        <BuyBtnView>
-                                            <Icon name='add' />
-                                            <BuyBtnText> CARRINHO </BuyBtnText>
-                                        </BuyBtnView>
-                                    </BuyBtn>
+                                    {
+                                        !item.purshased && (
+                                            <BuyBtn onPress={() => buyBook(index)}>
+                                                <BuyBtnView>
+                                                    <Icon type="FontAwesome5" name='plus' />
+                                                    <BuyBtnText> COMPRAR </BuyBtnText>
+                                                </BuyBtnView>
+                                            </BuyBtn>
+                                        )
+                                    }
+
+                                    {
+                                        item.purshased && (
+                                            <PurshasedBtn>
+                                                <BuyBtnView>
+                                                    <Icon type="FontAwesome5" name='check' />
+                                                    <BuyBtnText> COMPRADO </BuyBtnText>
+                                                </BuyBtnView>
+                                            </PurshasedBtn>
+                                        )
+                                    }
                                 </Card>
                             )}
                             keyExtractor={item => item.id}
