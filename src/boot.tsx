@@ -7,13 +7,13 @@ import { Theme } from '../Theme'
 import styled from 'styled-components'
 
 // Services
-import { getSession } from './utils/services/session'
+import { getSession, checkSession } from './utils/services/session'
 
 const boot = ({navigation}) => {
     
     useEffect(() => {
         async function handleSession() {
-            await getSession()  
+            await checkSession()  
             ? navigation.navigate('Library')
             : navigation.navigate('Login')
         }

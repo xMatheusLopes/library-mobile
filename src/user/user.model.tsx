@@ -7,5 +7,5 @@ export default class User {
     CPF: string;
     accessKey: string;
     picture: string;
-    generalStatusID: number
+    generalStatusID: number;
 }

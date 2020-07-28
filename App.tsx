@@ -7,7 +7,7 @@
  *
  * @format
  */
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { createAppContainer } from 'react-navigation';
 import AppStack from './src/screens';
@@ -20,13 +20,31 @@ import custom from './native-base-theme/variables/custom';
 
 const AppNavigator = createAppContainer(AppStack);
 
-import { getSession } from './src/utils/services/session';
+import { checkSession, renewSession, getSession, removeSession } from './src/utils/services/session';
+import navigation from './src/utils/services/navigation';
 
 const App = () => {
+    useEffect(() => {
+        const handleSession = async () => {
+            if (await getSession()) {
+                setInterval(async () => {
+                    const session = await checkSession()
+                    if (!session)
+                        await renewSession()
+                }, 60000)
+            }
+        }
+
+        handleSession()
+    }, [])
+
     return (
         <StyleProvider style={getTheme(custom)}>
             <Root>
-                <AppNavigator />
+                <AppNavigator ref={navigatorRef => {
+                        navigation.setTopLevelNavigator(navigatorRef);
+                    }} 
+                />
             </Root>
         </StyleProvider>
     );

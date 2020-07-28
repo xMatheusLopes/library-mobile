@@ -10,7 +10,9 @@ export const api = axios.create({
 api.interceptors.request.use(
     async options => {
         const session: User = await getSession();
-        options.headers['Authorization'] = `Bearer ${session.accessKey}`;
+        if (session) 
+            options.headers['Authorization'] = `Bearer ${session.accessKey}`;
+        
         return options;
     }, error => {
         console.log('Request error: ', error);
