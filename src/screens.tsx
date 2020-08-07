@@ -7,6 +7,7 @@ import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
 // Stack
 import Login from './login/Login';
 import Boot from './boot';
+import Book from './book/Book';
 
 // Drawer
 import { LibraryNavigator } from './library/Library';
@@ -17,7 +18,7 @@ import styled from 'styled-components'
 
 // Session
 import { getSession } from './utils/services/session';
-import { BookNavigator } from './book/Book';
+import { ListBooksNavigator } from './book/ListBooks';
 import { permissions } from './permissions';
 
 const CustomDrawerComponent = (props) => (
@@ -33,7 +34,7 @@ const CustomDrawerComponent = (props) => (
 // Items of menu
 const items = {
     Biblioteca: LibraryNavigator,
-    Livros: BookNavigator
+    Livros: ListBooksNavigator
 };
 
 // TODO get from logged user
@@ -59,6 +60,9 @@ const AppStack = createStackNavigator({
     },
     Login: {
         screen: Login
+    },
+    Book: {
+        screen: Book
     },
     Boot: {
         screen: Boot,

@@ -185,7 +185,7 @@ const Library = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
-            <Header HeaderTitle='Biblioteca' Right={RightContent}/>
+            <Header HeaderTitle='Biblioteca' Right={RightContent} />
             <Content>
                     { showSearch && 
                         (

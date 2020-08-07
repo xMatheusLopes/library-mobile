@@ -25,12 +25,18 @@ import navigation from './src/utils/services/navigation';
 
 const App = () => {
     useEffect(() => {
+        const sessionAction = async () => {
+            const session = await checkSession()
+            if (!session)
+                await renewSession()
+        }
+
         const handleSession = async () => {
             if (await getSession()) {
+                sessionAction()
+
                 setInterval(async () => {
-                    const session = await checkSession()
-                    if (!session)
-                        await renewSession()
+                    sessionAction()
                 }, 60000)
             }
         }
@@ -41,10 +47,7 @@ const App = () => {
     return (
         <StyleProvider style={getTheme(custom)}>
             <Root>
-                <AppNavigator ref={navigatorRef => {
-                        navigation.setTopLevelNavigator(navigatorRef);
-                    }} 
-                />
+                <AppNavigator ref={navigatorRef => navigation.setTopLevelNavigator(navigatorRef) } />
             </Root>
         </StyleProvider>
     );

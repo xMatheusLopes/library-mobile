@@ -73,6 +73,7 @@ const Login = ({navigation}) => {
             handleUser(response.data);
             setIsSubmitting(false);
         } catch(e) {
+            setIsSubmitting(false);
             handleError(e);
         }
     }
@@ -91,7 +92,7 @@ const Login = ({navigation}) => {
     }
 
     const handleError = (e: string) => {
-        console.log(e);
+        console.warn(e);
     }
 
     const LoginSchema = Yup.object().shape({
