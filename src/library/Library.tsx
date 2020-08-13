@@ -52,7 +52,7 @@ const Library = () => {
     const [items, setItems] = useState([
         {
             id: '1',
-            picture: 'https://images-na.ssl-images-amazon.com/images/I/91cO-IrKBpL.jpg',
+            picture: 'http://localhost:5000/storage/img/669953cb-3222-41d1-91eb-c2ec064bbbef.jpg',
             name: 'The Witcher',
             author: 'Andrzej Sapkowski',
             status: 1,

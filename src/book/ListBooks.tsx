@@ -1,14 +1,15 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { View, Text, Alert, FlatList } from 'react-native';
+import { View, Alert, FlatList } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import { Theme } from '../../Theme';
-import { Content, Button, Fab, Icon, Container } from 'native-base';
+import { Fab, Icon } from 'native-base';
 import Header from '../layout/Header';
 import { api } from '../utils/services/api';
 
-import IBook from './Interfaces';
+import { Card, Name, Author, Price, Image } from '../library/Styles';
+import { formatCurrency } from '../utils/services/pipes';
 
 const ListBooks = ({navigation}) => {
     const [books, setBooks] = useState([]);
@@ -29,16 +30,23 @@ const ListBooks = ({navigation}) => {
     return (
         <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
             <Header HeaderTitle={'Livros'} Right={null} ></Header>
-            <View style={{ flex: 1 }} >
-
-                <FlatList
-                    data={books}
-                    renderItem={({ item, index }) => (
-                        <Text style={{color: '#ffff'}}>{item.name}</Text>
-                    )}
-                    keyExtractor={item => item.id}
-                    numColumns={2}
-                />
+            <View style={{ flex: 1 }}>
+                { books.length > 0 && (
+                    <FlatList
+                        data={books}
+                        renderItem={({ item, index }) => (
+                            <Card>
+                                <Image source={{ uri: item.picture}} />
+                                <Name> {item.name} </Name>
+                                <Author> {item.author} </Author>
+                                <Price> {formatCurrency(item.price)} </Price>
+                            </Card>
+                        )}
+                        keyExtractor={item => item.id}
+                        numColumns={2}
+                    />
+                )}
+                
                 <Fab
                     style={{ backgroundColor: Theme.Primary }}
                     position="bottomRight"

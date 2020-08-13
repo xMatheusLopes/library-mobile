@@ -31,6 +31,7 @@ export const getSession = async () => {
 export const removeSession = async () => {
     try {
         await AsyncStorage.removeItem('session');
+        navigation.navigate('Login', {})
         return true;
     } catch(error) {
         return false;
