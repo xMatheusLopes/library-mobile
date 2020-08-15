@@ -21,11 +21,7 @@ import {
     Author, 
     Image, 
     Price, 
-    BuyBtn, 
-    BuyBtnText,
-    PurshasedBtn, 
     Icon, 
-    BuyBtnView,
     Item
 } from './Styles';
 
@@ -34,6 +30,8 @@ import Header from '../layout/Header';
 
 // Utils
 import { formatCurrency } from '../utils/services/pipes';
+import BooksList from '../book/components/BooksList';
+import IBook from '../book/Interface';
 
 const Library = () => {
     // Hooks
@@ -46,66 +44,60 @@ const Library = () => {
     }, [clicked])
 
     // TODO load from api
-    const [items, setItems] = useState([
+    const [items, setItems] = useState<IBook[]>([
         {
-            id: '1',
+            id: 1,
             picture: 'http://localhost:5000/storage/img/669953cb-3222-41d1-91eb-c2ec064bbbef.jpg',
             name: 'The Witcher',
             author: 'Andrzej Sapkowski',
-            status: 1,
             price: 40.00,
             purshased: false
         },
         {
-            id: '2',
+            id: 2,
             picture: 'https://images-na.ssl-images-amazon.com/images/I/91cO-IrKBpL.jpg',
             name: 'The Witcher 2',
             author: 'Andrzej Sapkowski',
-            status: 1,
             price: 50.00,
             purshased: false
         },
         {
-            id: '3',
+            id: 3,
             picture: 'https://images-na.ssl-images-amazon.com/images/I/91cO-IrKBpL.jpg',
             name: 'The Witcher 3',
             author: 'Andrzej Sapkowski',
-            status: 1,
             price: 50.00,
             purshased: false
         },
         {
-            id: '4',
+            id: 4,
             picture: 'https://images-na.ssl-images-amazon.com/images/I/91cO-IrKBpL.jpg',
             name: 'The Witcher 4',
             author: 'Andrzej Sapkowski',
-            status: 1,
-            price: 40.00
+            price: 40.00,
+            purshased: false
         },
         {
-            id: '5',
+            id: 5,
             picture: 'https://images-na.ssl-images-amazon.com/images/I/91cO-IrKBpL.jpg',
             name: 'The Witcher 5',
             author: 'Andrzej Sapkowski',
-            status: 1,
             price: 40.00,
             purshased: false
         },
         {
-            id: '6',
+            id: 6,
             picture: 'https://images-na.ssl-images-amazon.com/images/I/91cO-IrKBpL.jpg',
             name: 'The Witcher 6',
             author: 'Andrzej Sapkowski',
-            status: 1,
             price: 40.00,
             purshased: false
         },
         {
-            id: '7',
+            id: 7,
             picture: 'https://images-na.ssl-images-amazon.com/images/I/91cO-IrKBpL.jpg',
             name: 'The Witcher 7',
             author: 'Andrzej Sapkowski',
-            status: 1,
             price: 40.00,
             purshased: false
         },
@@ -145,11 +137,6 @@ const Library = () => {
                 showTransitionAnim();
                 break;
         }
-    }
-    const buyBook = (index: number) => {
-        const newItems = [...items]
-        newItems[index].purshased = true
-        setItems(newItems)
     }
     
     /**
@@ -213,40 +200,7 @@ const Library = () => {
                 
                 <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
                     <Container>
-                        <FlatList
-                            data={items}
-                            renderItem={({ item, index }) => (
-                                <Card>
-                                    <Image source={{ uri: item.picture}} />
-                                    <Name> {item.name} </Name>
-                                    <Author> {item.author} </Author>
-                                    <Price> {formatCurrency(item.price)} </Price>
-                                    {
-                                        !item.purshased && (
-                                            <BuyBtn onPress={() => buyBook(index)}>
-                                                <BuyBtnView>
-                                                    <Icon type="FontAwesome5" name='plus' />
-                                                    <BuyBtnText> COMPRAR </BuyBtnText>
-                                                </BuyBtnView>
-                                            </BuyBtn>
-                                        )
-                                    }
-
-                                    {
-                                        item.purshased && (
-                                            <PurshasedBtn>
-                                                <BuyBtnView>
-                                                    <Icon type="FontAwesome5" name='check' />
-                                                    <BuyBtnText> COMPRADO </BuyBtnText>
-                                                </BuyBtnView>
-                                            </PurshasedBtn>
-                                        )
-                                    }
-                                </Card>
-                            )}
-                            keyExtractor={item => item.id}
-                            numColumns={2}
-                        />
+                        { items.length > 0 && <BooksList isBuyable={true} books={items} /> }
                     </Container>
                 </View>
             </Content>

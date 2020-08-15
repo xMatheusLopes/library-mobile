@@ -3,4 +3,6 @@ export default interface IBook {
     name: string
     author: string
     picture: string
+    price: number
+    purshased: boolean
 }

@@ -7,7 +7,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Login from '../login/Login';
 import Library from '../library/Library';
 import Book from '../book/Book';
-import ListBooks from '../book/ListBooks';
+import Books from '../book/Books';
 import CustomDrawer from './CustomDrawer';
 import boot from '../boot';
 
@@ -16,7 +16,7 @@ const Drawer = createDrawerNavigator();
 
 const BookStack = () => (
     <Stack.Navigator>
-        <Stack.Screen name="ListBook" options={{ headerShown: false }} component={ListBooks} />
+        <Stack.Screen name="ListBook" options={{ headerShown: false }} component={Books} />
         <Stack.Screen name="Book" options={{ headerShown: false }} component={Book} />
     </Stack.Navigator>
 );

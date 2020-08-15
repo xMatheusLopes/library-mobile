@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-import { View, Alert, FlatList } from 'react-native';
+import { View, Alert } from 'react-native';
 
 import { Theme } from '../../Theme';
 import { Fab, Icon } from 'native-base';
 import Header from '../layout/Header';
 import { api } from '../utils/services/api';
 
-import { Card, Name, Author, Price, Image } from '../library/Styles';
-import { formatCurrency } from '../utils/services/pipes';
+import BooksList from './components/BooksList';
+import IBook from './Interface';
 
-const ListBooks = ({navigation}) => {
-    const [books, setBooks] = useState([]);
+const Books = ({navigation}) => {
+    const [books, setBooks] = useState<IBook[]>([]);
 
     const loadBooks = async () => {
         try {
@@ -30,22 +30,7 @@ const ListBooks = ({navigation}) => {
         <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
             <Header HeaderTitle={'Livros'} Right={null} ></Header>
             <View style={{ flex: 1 }}>
-                { books.length > 0 && (
-                    <FlatList
-                        data={books}
-                        renderItem={({ item, index }) => (
-                            <Card>
-                                <Image source={{ uri: item.picture}} />
-                                <Name> {item.name} </Name>
-                                <Author> {item.author} </Author>
-                                <Price> {formatCurrency(item.price)} </Price>
-                            </Card>
-                        )}
-                        keyExtractor={item => item.id}
-                        numColumns={2}
-                    />
-                )}
-                
+                { books.length > 0 && <BooksList isBuyable={false} books={books}  />}
                 <Fab
                     style={{ backgroundColor: Theme.Primary }}
                     position="bottomRight"
@@ -57,4 +42,4 @@ const ListBooks = ({navigation}) => {
     )
 }
 
-export default ListBooks;
+export default Books;
