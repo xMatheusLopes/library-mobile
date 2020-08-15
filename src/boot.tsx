@@ -7,19 +7,38 @@ import { Theme } from '../Theme'
 import styled from 'styled-components'
 
 // Services
-import { getSession, checkSession } from './utils/services/session'
+import { getSession, checkSession, renewSession } from './utils/services/session'
 
 const boot = ({navigation}) => {
-    
-    useEffect(() => {
-        async function handleSession() {
-            await checkSession()  
-            ? navigation.navigate('Library')
-            : navigation.navigate('Login')
-        }
 
-        handleSession();
-    }, []);
+    const sessionAction = async () => {
+        const session = await checkSession()
+        if (!session) {
+            const renew = await renewSession();
+
+            renew 
+                ? navigation.navigate('Drawer', { screen: 'Library' })
+                : navigation.navigate('Login')
+        } else {
+            navigation.navigate('Drawer', { screen: 'Library' })
+        }
+    }
+
+    const handleSession = async () => {
+        if (await getSession()) {
+            sessionAction()
+
+            setInterval(async () => {
+                sessionAction()
+            }, 60000)
+        } else {
+            navigation.navigate('Login')
+        }
+    }
+
+    useEffect(() => {
+        handleSession()
+    }, [])
 
     return (
         <View>

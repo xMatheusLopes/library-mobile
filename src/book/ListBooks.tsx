@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import { View, Alert, FlatList } from 'react-native';
-import { createStackNavigator } from 'react-navigation-stack';
 
 import { Theme } from '../../Theme';
 import { Fab, Icon } from 'native-base';
@@ -51,7 +50,7 @@ const ListBooks = ({navigation}) => {
                     style={{ backgroundColor: Theme.Primary }}
                     position="bottomRight"
                     onPress={() => navigation.navigate('Book')}>
-                    <Icon name="plus" type="FontAwesome5"/>
+                    <Icon name="plus" style={{ color: Theme.Dark }} type="FontAwesome5"/>
                 </Fab>
             </View>
         </View>
@@ -59,11 +58,3 @@ const ListBooks = ({navigation}) => {
 }
 
 export default ListBooks;
-
-ListBooks.navigationOptions = {
-    headerShown: false
-}
-
-export const ListBooksNavigator = createStackNavigator({
-    ListBooks: { screen: ListBooks }
-});

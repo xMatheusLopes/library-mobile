@@ -4,7 +4,7 @@ import User from '../../user/user.model';
 import { api } from './api';
 import moment from 'moment';
 
-import navigation from './navigation';
+import { useNavigation } from '@react-navigation/native';
 
 export const setSession = (data: User) => {
     const item = data;
@@ -31,7 +31,6 @@ export const getSession = async () => {
 export const removeSession = async () => {
     try {
         await AsyncStorage.removeItem('session');
-        navigation.navigate('Login', {})
         return true;
     } catch(error) {
         return false;
@@ -53,7 +52,8 @@ export const renewSession = async () => {
         const session = await getSession();
         const response = await api.get(`renew-session/${session.accessKey}`);
         setSession(response.data)
+        return true;
     } catch(e) {
-        navigation.navigate('Login', {})
+        return false;
     }
 }

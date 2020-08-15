@@ -2,9 +2,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { View, FlatList, Animated } from 'react-native'
 
-// Navigation
-import { createStackNavigator } from 'react-navigation-stack';
-
 // Native Base
 import { 
     Content, 
@@ -256,16 +253,5 @@ const Library = () => {
         </View>
     )
 }
-
-/**
- * Navigation
- */
-Library.navigationOptions = {
-    headerShown: false
-}
-
-export const LibraryNavigator = createStackNavigator({
-    Library: { screen: Library }
-});
 
 export default Library

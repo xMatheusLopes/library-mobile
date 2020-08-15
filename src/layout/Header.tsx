@@ -3,12 +3,14 @@ import React from 'react';
 import { Left, Icon, Title, Body, Button, Header as NBHeader, Right as NBRight } from 'native-base';
 import { Theme } from '../../Theme';
 import { StatusBar, ImageBackground } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { useNavigation, DrawerActions } from '@react-navigation/native'; 
 
-const Header = ({navigation, Right, HeaderTitle, BackButton = false, NavigationParams = null}) => {
+const Header = ({Right, HeaderTitle, BackButton = false, NavigationParams = null}) => {
     if (!Right) {
         Right = NBRight
     }
+
+    const navigation = useNavigation();
 
     const LeftButton = () => {
         if (BackButton) {
@@ -16,7 +18,7 @@ const Header = ({navigation, Right, HeaderTitle, BackButton = false, NavigationP
                 <Left>
                     <Button
                     transparent
-                    onPress={() => navigation.goBack(NavigationParams)}>
+                    onPress={() => navigation.goBack()}>
                     <Icon type="FontAwesome5" style={{ fontSize: 22, marginLeft: 10, color: Theme.Dark }} name="arrow-left" />
                     </Button>
                 </Left>
@@ -26,7 +28,7 @@ const Header = ({navigation, Right, HeaderTitle, BackButton = false, NavigationP
                 <Left>
                     <Button
                     transparent
-                    onPress={() => navigation.toggleDrawer()}>
+                    onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
                     <Icon type="FontAwesome5" style={{ fontSize: 22, marginLeft: 10, color: Theme.Dark }} name="bars" />
                     </Button>
                 </Left>
@@ -36,7 +38,7 @@ const Header = ({navigation, Right, HeaderTitle, BackButton = false, NavigationP
 
     return (
         <ImageBackground source={require('../../assets/img/bg-header.png')} style={{ width: '100%', height: 120 }}>
-            <NBHeader style={{ backgroundColor: 'transparent', borderBottomWidth: 0, marginTop: -10}}>
+            <NBHeader style={{ backgroundColor: 'transparent', borderBottomWidth: 0, marginTop: -25}}>
                 <StatusBar barStyle="dark-content" />
                 <LeftButton />
                 <Body>
@@ -45,8 +47,7 @@ const Header = ({navigation, Right, HeaderTitle, BackButton = false, NavigationP
                 <Right />
             </NBHeader>
         </ImageBackground>
-
     );
 }
 
-export default withNavigation(Header);
+export default Header;

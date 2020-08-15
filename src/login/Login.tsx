@@ -81,7 +81,7 @@ const Login = ({navigation}) => {
     const handleUser = async (data: User) => {
         if (data) {
             setSession(data);
-            navigation.navigate('Library');
+            navigation.navigate('Drawer', { screen: 'Library' });
         } else {
             Toast.show({
                 text: "E-mail e/ou senha inválido",
@@ -174,10 +174,6 @@ const Login = ({navigation}) => {
         </ScrollView>
     )
     
-}
-
-Login.navigationOptions = {
-    headerShown: false
 }
 
 export default Login;
