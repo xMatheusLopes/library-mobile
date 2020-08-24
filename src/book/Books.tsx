@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Alert } from 'react-native';
 
 import { Theme } from '../../Theme';
-import { Fab, Icon } from 'native-base';
+import { Fab } from 'native-base';
 import Header from '../layout/Header';
 import { api } from '../utils/services/api';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import BooksList from './components/BooksList';
 import IBook from './Interface';
@@ -35,7 +36,7 @@ const Books = ({navigation}) => {
                     style={{ backgroundColor: Theme.Primary }}
                     position="bottomRight"
                     onPress={() => navigation.navigate('Book')}>
-                    <Icon name="plus" style={{ color: Theme.Dark }} type="FontAwesome5"/>
+                    <FontAwesome5 name={"plus"} style={{ color: Theme.Dark }}/>
                 </Fab>
             </View>
         </View>

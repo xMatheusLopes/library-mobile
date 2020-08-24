@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { FlatList } from 'react-native';
+import { FlatList, ScrollView, View } from 'react-native';
 
-import { Card, Name, Author, Price, Image, PurshasedBtn, BuyBtnView, Icon, BuyBtnText, BuyBtn } from '../../library/Styles';
+import { Card, Name, Author, Price, Image, PurshasedBtn, BuyBtnView, BuyBtnText, BuyBtn } from '../../library/Styles';
 import { formatCurrency } from '../../utils/services/pipes';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import IBook from '../Interface'
 
@@ -20,7 +21,7 @@ const BooksList = ({ books, isBuyable,  ...rest }: {books: IBook[], isBuyable: b
         setAuxBooks(newItems)
     }
 
-    return (
+    return ( 
         <FlatList
             data={auxBooks}
             renderItem={({ item, index }: {item: IBook, index: number}) => (
@@ -33,7 +34,7 @@ const BooksList = ({ books, isBuyable,  ...rest }: {books: IBook[], isBuyable: b
                         isBuyable == true && !item.purshased && (
                             <BuyBtn onPress={() => buyBook(index)}>
                                 <BuyBtnView>
-                                    <Icon type="FontAwesome5" name='plus' />
+                                    <FontAwesome5 name={'plus'} />
                                     <BuyBtnText> COMPRAR </BuyBtnText>
                                 </BuyBtnView>
                             </BuyBtn>
@@ -44,7 +45,7 @@ const BooksList = ({ books, isBuyable,  ...rest }: {books: IBook[], isBuyable: b
                         isBuyable == true && item.purshased && (
                             <PurshasedBtn>
                                 <BuyBtnView>
-                                    <Icon type="FontAwesome5" name='check' />
+                                    <FontAwesome5 name={'check'} />
                                     <BuyBtnText> COMPRADO </BuyBtnText>
                                 </BuyBtnView>
                             </PurshasedBtn>

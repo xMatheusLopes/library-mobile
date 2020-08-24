@@ -7,7 +7,6 @@ import {
     Content,  
     Form, 
     Input,
-    Icon,
     Toast,
     Header, 
     Left, 
@@ -18,6 +17,8 @@ import {
     Button as NBButton, 
     Text as NBText
 } from 'native-base';
+
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 // Styles
 import styled from 'styled-components';
@@ -134,7 +135,7 @@ const Login = ({navigation}) => {
                                     <Form>
                                         <ViewItem>
                                             <Item error={errors.email && touched.email}>
-                                                <Icon type="FontAwesome" active name='user' />
+                                                <FontAwesome5 active name={'user'} />
                                                 <Input 
                                                     autoCapitalize="none" 
                                                     placeholder="E-mail" 
@@ -148,7 +149,7 @@ const Login = ({navigation}) => {
 
                                         <ViewItem>
                                             <Item error={errors.password && touched.password}>
-                                                <Icon type="FontAwesome" active name='key' />
+                                                <FontAwesome5 active name={'key'} />
                                                 <Input 
                                                     autoCapitalize="none" 
                                                     secureTextEntry={true} 

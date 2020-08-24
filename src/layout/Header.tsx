@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { Left, Icon, Title, Body, Button, Header as NBHeader, Right as NBRight } from 'native-base';
+import { Left, Title, Body, Button, Header as NBHeader, Right as NBRight } from 'native-base';
 import { Theme } from '../../Theme';
 import { StatusBar, ImageBackground } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native'; 
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 
 const Header = ({Right, HeaderTitle, BackButton = false, NavigationParams = null}) => {
     if (!Right) {
@@ -19,7 +21,7 @@ const Header = ({Right, HeaderTitle, BackButton = false, NavigationParams = null
                     <Button
                     transparent
                     onPress={() => navigation.goBack()}>
-                    <Icon type="FontAwesome5" style={{ fontSize: 22, marginLeft: 10, color: Theme.Dark }} name="arrow-left" />
+                    <FontAwesome5 style={{ fontSize: 22, marginLeft: 10, color: Theme.Dark }} name={"arrow-left"} />
                     </Button>
                 </Left>
             )
@@ -29,7 +31,7 @@ const Header = ({Right, HeaderTitle, BackButton = false, NavigationParams = null
                     <Button
                     transparent
                     onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-                    <Icon type="FontAwesome5" style={{ fontSize: 22, marginLeft: 10, color: Theme.Dark }} name="bars" />
+                    <FontAwesome5 style={{ fontSize: 22, marginLeft: 10, color: Theme.Dark }} name={"bars"} />
                     </Button>
                 </Left>
             )

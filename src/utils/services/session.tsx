@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
 import User from '../../user/user.model';
-import { api } from './api';
 import moment from 'moment';
 
 import { useNavigation } from '@react-navigation/native';
@@ -50,10 +49,12 @@ export const checkSession = async () => {
 export const renewSession = async () => {
     try {
         const session = await getSession();
-        const response = await api.get(`renew-session/${session.accessKey}`);
-        setSession(response.data)
+        let response: any = await fetch(`http://localhost:5000/renew-session/${session.accessKey}`);
+        response = await response.json()
+        setSession(response)
         return true;
     } catch(e) {
+        console.warn(e);
         return false;
     }
 }

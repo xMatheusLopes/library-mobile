@@ -20,13 +20,14 @@ import {
     Name, 
     Author, 
     Image, 
-    Price, 
-    Icon, 
+    Price,  
     Item
 } from './Styles';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 // Layout
 import Header from '../layout/Header';
+
 
 // Utils
 import { formatCurrency } from '../utils/services/pipes';
@@ -161,7 +162,7 @@ const Library = () => {
                             setClicked(buttonIndex);
                           }
                         )}>
-                    <Icon type="FontAwesome5" style={{color: Theme.Dark}} name="ellipsis-v" />
+                    <FontAwesome5 style={{color: Theme.Dark}} name={"ellipsis-v"} />
                 </Button>
             </Right>
         );
@@ -170,40 +171,38 @@ const Library = () => {
     return (
         <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
             <Header HeaderTitle='Biblioteca' Right={RightContent} />
-            <Content>
-                    { showSearch && 
-                        (
-                            <Animated.View 
-                                style={{ 
-                                    height: translateYValue.interpolate({
-                                        inputRange: [-100, -80, -60, -40, -20, -10, 1],
-                                        outputRange: [0, 10, 20, 30, 40, 50, 65],
-                                    }),
-                                    transform: [ { translateY: translateYValue } ] 
-                                }}>
-                                <Form style={{ marginRight: 16}}>
-                                        <Item>
-                                            <Icon type='FontAwesome5' active name='search' />
-                                            <Input autoFocus={showSearch} placeholder="Pesquisar" />
-                                            <Icon onPress={() => {
-                                                hideTransitionAnim();
-                                                setClicked(null);
-                                                setTimeout(() => {
-                                                    setShowSearch(false);
-                                                }, 1000);
-                                            }} type='FontAwesome' name='close' />
-                                        </Item>
-                                </Form>
-                            </Animated.View>
-                        )
-                    }
-                
-                <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
-                    <Container>
-                        { items.length > 0 && <BooksList isBuyable={true} books={items} /> }
-                    </Container>
-                </View>
-            </Content>
+                { showSearch && 
+                    (
+                        <Animated.View 
+                            style={{ 
+                                height: translateYValue.interpolate({
+                                    inputRange: [-100, -80, -60, -40, -20, -10, 1],
+                                    outputRange: [0, 10, 20, 30, 40, 50, 65],
+                                }),
+                                transform: [ { translateY: translateYValue } ] 
+                            }}>
+                            <Form style={{ marginRight: 16}}>
+                                    <Item>
+                                        <FontAwesome5 active name={'search'} />
+                                        <Input autoFocus={showSearch} placeholder="Pesquisar" />
+                                        <FontAwesome5 onPress={() => {
+                                            hideTransitionAnim();
+                                            setClicked(null);
+                                            setTimeout(() => {
+                                                setShowSearch(false);
+                                            }, 1000);
+                                        }} name={'close'} />
+                                    </Item>
+                            </Form>
+                        </Animated.View>
+                    )
+                }
+            
+            <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
+                <Container>
+                    { items.length > 0 && <BooksList isBuyable={true} books={items} /> }
+                </Container>
+            </View>
         </View>
     )
 }
