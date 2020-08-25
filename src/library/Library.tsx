@@ -1,10 +1,9 @@
 // Native
 import React, { useState, useEffect, useRef } from 'react'
-import { View, FlatList, Animated } from 'react-native'
+import { View, FlatList, Animated, Text } from 'react-native'
 
 // Native Base
-import { 
-    Content, 
+import {  
     Right, 
     Button, 
     ActionSheet, 
@@ -14,14 +13,8 @@ import {
 
 // Styles
 import { Theme } from '../../Theme';
-import { 
-    Card, 
+import {  
     Container, 
-    Name, 
-    Author, 
-    Image, 
-    Price,  
-    Item
 } from './Styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -30,20 +23,15 @@ import Header from '../layout/Header';
 
 
 // Utils
-import { formatCurrency } from '../utils/services/pipes';
 import BooksList from '../book/components/BooksList';
 import IBook from '../book/Interface';
 
+import Search from './Search';
+
 const Library = () => {
-    // Hooks
-    const [clicked, setClicked] = useState(null);
-    const [showSearch, setShowSearch] = useState(false);
-    const [translateYValue, setTranslateYValue] = useState(new Animated.Value(-100));
+    
 
-    useEffect(() => {
-        handleAction();
-    }, [clicked])
-
+    
     // TODO load from api
     const [items, setItems] = useState<IBook[]>([
         {
@@ -109,37 +97,23 @@ const Library = () => {
      */
     const BUTTONS = ["Pesquisar", "Cancelar"];
     const CANCEL_INDEX = 1;
+    
+    const [clicked, setClicked] = useState(null);
+    const [showSearch, setShowSearch] = useState(false);
 
-    const showTransitionAnim = () => {
-            Animated.timing(
-                translateYValue, 
-                { 
-                    toValue: 1,
-                    duration: 1000 
-                }
-            ).start();
-    }
-
-    const hideTransitionAnim = () => {
-        Animated.timing(
-            translateYValue, 
-            { 
-                toValue: -100,
-                duration: 1000 
-            }
-        ).start();
-    }
+    useEffect(() => {
+        handleAction();
+    }, [clicked])
 
     // Handle actions from Right item 
     const handleAction = () => {
         switch(clicked) {
             case 0:
                 setShowSearch(true);
-                showTransitionAnim();
                 break;
         }
     }
-    
+
     /**
      * Componentes
      */
@@ -171,32 +145,7 @@ const Library = () => {
     return (
         <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
             <Header HeaderTitle='Biblioteca' Right={RightContent} />
-                { showSearch && 
-                    (
-                        <Animated.View 
-                            style={{ 
-                                height: translateYValue.interpolate({
-                                    inputRange: [-100, -80, -60, -40, -20, -10, 1],
-                                    outputRange: [0, 10, 20, 30, 40, 50, 65],
-                                }),
-                                transform: [ { translateY: translateYValue } ] 
-                            }}>
-                            <Form style={{ marginRight: 16}}>
-                                    <Item>
-                                        <FontAwesome5 active name={'search'} />
-                                        <Input autoFocus={showSearch} placeholder="Pesquisar" />
-                                        <FontAwesome5 onPress={() => {
-                                            hideTransitionAnim();
-                                            setClicked(null);
-                                            setTimeout(() => {
-                                                setShowSearch(false);
-                                            }, 1000);
-                                        }} name={'close'} />
-                                    </Item>
-                            </Form>
-                        </Animated.View>
-                    )
-                }
+            { showSearch &&  <Search clicked={clicked} setShowSearch={setShowSearch} showSearch={showSearch} setClicked={setClicked} />}
             
             <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
                 <Container>

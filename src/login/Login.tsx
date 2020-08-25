@@ -93,7 +93,11 @@ const Login = ({navigation}) => {
     }
 
     const handleError = (e: string) => {
-        console.warn(e);
+        Toast.show({
+            text: "Oops, algo deu errado na requisição, tente novamente mais tarde!",
+            buttonText: "Ok",
+            duration: 5000
+        });
     }
 
     const LoginSchema = Yup.object().shape({
@@ -135,7 +139,7 @@ const Login = ({navigation}) => {
                                     <Form>
                                         <ViewItem>
                                             <Item error={errors.email && touched.email}>
-                                                <FontAwesome5 active name={'user'} />
+                                                <FontAwesome5 active name={'user'} solid/>
                                                 <Input 
                                                     autoCapitalize="none" 
                                                     placeholder="E-mail" 
