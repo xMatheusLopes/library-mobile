@@ -28,12 +28,7 @@ import {
     BookMarker,
     Card, 
     H2, 
-    TextCenter, 
-    Item, 
-    ViewAccessButton,
-    ActivityIndicator,
-    TextError,
-    ViewItem
+    TextCenter
  } from './Styles';
 
  import { content, scrollview } from '../utils/styles/Styles'
@@ -45,27 +40,11 @@ import { setSession } from '../utils/services/session';
 import User from '../user/user.model';
 
 // Formulário
-import { Formik } from 'formik';
 import * as Yup from 'yup';
-
-interface login {
-    email: string,
-    password: string
-}
+import MyForm from '../components/MyForm';
 
 const Login = ({navigation}) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
-
-    const AccessButton = ({ handleSubmit, errors }) => {
-        const hasError = Object.keys(errors).length !== 0;
-
-        return (
-            <NBButton dark disabled={isSubmitting || hasError} onPress={handleSubmit} block>
-                <NBText>ACESSAR</NBText>
-                <ActivityIndicator size="large" color={Theme.Accent} animating={isSubmitting} />
-            </NBButton>
-        )
-    }
 
     const submit = async (values) => {
         try {
@@ -108,6 +87,11 @@ const Login = ({navigation}) => {
             .required('Digite a sua senha')
     })
 
+    const items = [
+        { field: 'email', icon: 'user', placeholder: 'Digite aqui seu e-mail', key: 'user' },
+        { field: 'password', icon: 'key', placeholder: 'Digite aqui sua senha', key: 'pass', options: { secureTextEntry: true } }
+    ]
+
     return (
         <ScrollView contentContainerStyle={styles.scrollview}>
             <StatusBar barStyle="dark-content" />
@@ -115,63 +99,12 @@ const Login = ({navigation}) => {
                 <Content contentContainerStyle={styles.content}>
                     <KeyboardAvoidingView>
                         <ElevatedView>
-                            <BookMarker
-                                source={require('../../assets/img/marker.png')}
-                            />
+                            <BookMarker source={require('../../assets/img/marker.png')} />
                         </ElevatedView>
                         <Card>
                             <H2>Entrar</H2>
                             <TextCenter>Coloque suas credenciais para acessar</TextCenter>
-
-                            <Formik
-                                initialValues={{email: '', password: ''}}
-                                onSubmit={(values) => submit(values)}
-                                validationSchema={LoginSchema}
-                            >
-                                {({
-                                    values,
-                                    errors,
-                                    touched,
-                                    handleChange,
-                                    handleBlur,
-                                    handleSubmit
-                                }) => (
-                                    <Form>
-                                        <ViewItem>
-                                            <Item error={errors.email && touched.email}>
-                                                <FontAwesome5 active name={'user'} solid/>
-                                                <Input 
-                                                    autoCapitalize="none" 
-                                                    placeholder="E-mail" 
-                                                    onChangeText={handleChange('email')}
-                                                    onBlur={handleBlur('email')}
-                                                    value={values.email}
-                                                />
-                                            </Item>
-                                            <TextError>{errors.email && touched.email && errors.email}</TextError>
-                                        </ViewItem>
-
-                                        <ViewItem>
-                                            <Item error={errors.password && touched.password}>
-                                                <FontAwesome5 active name={'key'} />
-                                                <Input 
-                                                    autoCapitalize="none" 
-                                                    secureTextEntry={true} 
-                                                    placeholder="Senha" 
-                                                    onChangeText={handleChange('password')}
-                                                    onBlur={handleBlur('password')}
-                                                    value={values.password}
-                                                />
-                                            </Item>
-                                            <TextError>{errors.password && touched.password && errors.password}</TextError>
-                                        </ViewItem>
-
-                                        <ViewAccessButton>
-                                            <AccessButton handleSubmit={handleSubmit} errors={errors}></AccessButton>
-                                        </ViewAccessButton>
-                                    </Form>
-                                )}
-                            </Formik>
+                            <MyForm schema={LoginSchema} submit={submit} isSubmitting={isSubmitting} items={items} />
                         </Card>
                     </KeyboardAvoidingView>
                 </Content>
