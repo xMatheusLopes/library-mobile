@@ -1,14 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
 import Header from '../layout/Header';
-
-// import { Container } from './styles';
+import { MyContainer } from '../utils/styles/Styles';
 
 const Book = () => {
   return (
-      <View>
+      <MyContainer>
           <Header BackButton={true} HeaderTitle='Novo Livro' Right={null} />
-      </View>
+      </MyContainer>
   );
 }
 

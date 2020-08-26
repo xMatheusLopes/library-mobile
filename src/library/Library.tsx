@@ -1,22 +1,17 @@
 // Native
-import React, { useState, useEffect, useRef } from 'react'
-import { View, FlatList, Animated, Text } from 'react-native'
+import React, { useState, useEffect } from 'react'
 
 // Native Base
 import {  
     Right, 
     Button, 
     ActionSheet, 
-    Form, 
-    Input 
+
 } from 'native-base';
 
 // Styles
 import { Theme } from '../../Theme';
-import {  
-    Container, 
-} from './Styles';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { MyContent, MyContainer } from '../utils/styles/Styles';
 
 // Layout
 import Header from '../layout/Header';
@@ -28,9 +23,10 @@ import IBook from '../book/Interface';
 
 import Search from './Search';
 
-const Library = () => {
-    
+// Icons
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+const Library = () => {
     
     // TODO load from api
     const [items, setItems] = useState<IBook[]>([
@@ -143,16 +139,13 @@ const Library = () => {
     }
 
     return (
-        <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
+        <MyContainer>
             <Header HeaderTitle='Biblioteca' Right={RightContent} />
-            { showSearch &&  <Search clicked={clicked} setShowSearch={setShowSearch} showSearch={showSearch} setClicked={setClicked} />}
-            
-            <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
-                <Container>
-                    { items.length > 0 && <BooksList isBuyable={true} books={items} /> }
-                </Container>
-            </View>
-        </View>
+            <MyContent>
+                { showSearch &&  <Search setShowSearch={setShowSearch} showSearch={showSearch} setClicked={setClicked} />}
+                { items.length > 0 && <BooksList isBuyable={true} books={items} /> }
+            </MyContent>
+        </MyContainer>
     )
 }
 

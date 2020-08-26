@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Platform, ViewStyle } from 'react-native'
+import { Theme } from '../../../Theme';
 
 export const PrimaryText = styled.Text`
   color: ${Platform.OS === 'android' ? '#3F51B5' : '#007aff'}
@@ -15,5 +16,15 @@ export const scrollview: ViewStyle = {
   flex: 1,
   justifyContent: 'center'
 }
+
+export const MyContent = styled.View`
+    flex: 1;
+    background-color: ${ Theme.Dark }
+`;
+
+export const MyContainer = styled.View`
+    flex: 1;
+    background-color: ${ Theme.Dark }
+`;
 
 

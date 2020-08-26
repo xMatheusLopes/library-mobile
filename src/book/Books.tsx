@@ -10,6 +10,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import BooksList from './components/BooksList';
 import IBook from './Interface';
+import { MyContainer, MyContent } from '../utils/styles/Styles';
 
 const Books = ({navigation}) => {
     const [books, setBooks] = useState<IBook[]>([]);
@@ -27,19 +28,23 @@ const Books = ({navigation}) => {
         loadBooks()
     }, [])
 
+    const FabBtn = () => (
+        <Fab
+            style={{ backgroundColor: Theme.Primary }}
+            position="bottomRight"
+            onPress={() => navigation.navigate('Book')}>
+            <FontAwesome5 name={"plus"} style={{ color: Theme.Dark }}/>
+        </Fab>
+    )
+
     return (
-        <View style={{ flex: 1, backgroundColor: Theme.Dark }}>
+        <MyContainer>
             <Header HeaderTitle={'Livros'} Right={null} ></Header>
-            <View style={{ flex: 1 }}>
+            <MyContent>
                 { books.length > 0 && <BooksList isBuyable={false} books={books}  />}
-                <Fab
-                    style={{ backgroundColor: Theme.Primary }}
-                    position="bottomRight"
-                    onPress={() => navigation.navigate('Book')}>
-                    <FontAwesome5 name={"plus"} style={{ color: Theme.Dark }}/>
-                </Fab>
-            </View>
-        </View>
+                <FabBtn />
+            </MyContent>
+        </MyContainer>
     )
 }
 

@@ -7,7 +7,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import IBook from '../Interface'
 
-const BooksList = ({ books, isBuyable,  ...rest }: {books: IBook[], isBuyable: boolean}) => {
+const BooksList = ({ books, isBuyable }: {books: IBook[], isBuyable: boolean}) => {
 
     const [auxBooks, setAuxBooks] = useState([]);
 
