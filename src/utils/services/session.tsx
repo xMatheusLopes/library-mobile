@@ -50,11 +50,13 @@ export const renewSession = async () => {
     try {
         const session = await getSession();
         let response: any = await fetch(`http://localhost:5000/renew-session/${session.accessKey}`);
-        response = await response.json()
+        // console.warn(typeof(response), response);
+        response = await response.json();
+        // console.warn(response);
         setSession(response)
         return true;
     } catch(e) {
-        console.warn(e);
+        console.log(e);
         return false;
     }
 }

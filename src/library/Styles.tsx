@@ -81,3 +81,11 @@ export const Item = styled(NBItem)`
     padding-vertical: 4px;
     border-radius: 8px;
 `;
+
+export const Right = styled.View`
+
+`;
+
+export const Button = styled.TouchableOpacity`
+    
+`;

@@ -2,12 +2,11 @@ import React from 'react';
 
 // Native Base
 import {    
-    Form, 
     Button as NBButton, 
     Text as NBText
 } from 'native-base';
 
-import { ActivityIndicator, ViewAccessButton } from './Styles';
+import { ActivityIndicator, ViewAccessButton, Form } from './Styles';
 import { Theme } from '../../Theme';
 import { Formik } from 'formik';
 import MyFormItem from './MyFormItem';

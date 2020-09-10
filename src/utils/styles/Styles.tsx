@@ -17,9 +17,10 @@ export const scrollview: ViewStyle = {
   justifyContent: 'center'
 }
 
-export const MyContent = styled.View`
+export const MyContent = styled.SafeAreaView`
     flex: 1;
-    background-color: ${ Theme.Dark }
+    background-color: ${ Theme.Dark };
+    margin-top: 60px;
 `;
 
 export const MyContainer = styled.View`

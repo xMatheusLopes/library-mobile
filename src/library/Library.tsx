@@ -2,9 +2,7 @@
 import React, { useState, useEffect } from 'react'
 
 // Native Base
-import {  
-    Right, 
-    Button, 
+import {    
     ActionSheet, 
 
 } from 'native-base';
@@ -25,6 +23,7 @@ import Search from './Search';
 
 // Icons
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { Right, Button } from './Styles';
 
 const Library = () => {
     
@@ -119,7 +118,6 @@ const Library = () => {
         return (
             <Right>
                 <Button
-                    transparent
                     onPress={() =>
                         ActionSheet.show(
                           {
@@ -132,7 +130,7 @@ const Library = () => {
                             setClicked(buttonIndex);
                           }
                         )}>
-                    <FontAwesome5 style={{color: Theme.Dark}} name={"ellipsis-v"} />
+                    <FontAwesome5 style={{color: Theme.Dark, fontSize: 18}} name={"ellipsis-v"} />
                 </Button>
             </Right>
         );

@@ -1,6 +1,6 @@
 // React
 import React, { useState } from 'react'
-import { StyleSheet, KeyboardAvoidingView, ScrollView, StatusBar } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView, ScrollView, StatusBar, View } from 'react-native'
 
 // Native Base
 import {    
@@ -17,8 +17,6 @@ import {
     Button as NBButton, 
     Text as NBText
 } from 'native-base';
-
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 // Styles
 import styled from 'styled-components';
@@ -94,9 +92,9 @@ const Login = ({navigation}) => {
 
     return (
         <ScrollView contentContainerStyle={styles.scrollview}>
-            <StatusBar barStyle="dark-content" />
+            <StatusBar barStyle="dark-content" backgroundColor={Theme.Primary}/>
             <Container>
-                <Content contentContainerStyle={styles.content}>
+                <View style={styles.content}>
                     <KeyboardAvoidingView>
                         <ElevatedView>
                             <BookMarker source={require('../../assets/img/marker.png')} />
@@ -107,7 +105,7 @@ const Login = ({navigation}) => {
                             <MyForm schema={LoginSchema} submit={submit} isSubmitting={isSubmitting} items={items} />
                         </Card>
                     </KeyboardAvoidingView>
-                </Content>
+                </View>
             </Container>
         </ScrollView>
     )

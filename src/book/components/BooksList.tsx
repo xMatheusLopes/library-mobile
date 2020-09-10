@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FlatList, SafeAreaView } from 'react-native';
+import { FlatList, SafeAreaView, View } from 'react-native';
 
 import { Card, Name, Author, Price, Image, PurshasedBtn, BuyBtnView, BuyBtnText, BuyBtn } from '../../library/Styles';
 import { formatCurrency } from '../../utils/services/pipes';

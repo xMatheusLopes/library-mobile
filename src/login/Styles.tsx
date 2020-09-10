@@ -7,7 +7,7 @@ import {
     Text as NBText,
  } from 'native-base';
 
-export const Container = styled(NBContainer)`
+export const Container = styled.View`
     background-color: #f6ca1f;
     flex: 1;
     justify-content: center;
@@ -25,11 +25,12 @@ export const BookMarker = styled.Image`
     resizeMode: contain;
 `;
 
-export const Card = styled(NBCard)`
-    padding: 8px;
+export const Card = styled.View`
+    padding: 16px;
     border-radius: 8px;
     box-shadow: 10px 10px 10px rgba(244,166,1,1);
     top: -40px;
+    background-color: #fff;
 `;
 
 export const H2 = styled(NBH2)`
@@ -40,7 +41,7 @@ export const H2 = styled(NBH2)`
 export const TextCenter = styled(NBText)`
     text-align: center;
     margin-bottom: 24px;
-    color: grey;
+    color: #ccc;
 `;
 
 
