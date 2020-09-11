@@ -1,14 +1,13 @@
 import React from 'react';
-import { ViewItem, Item, TextError } from './Styles';
+import { ViewItem, Item, TextError, FA5 } from './Styles';
 
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { TextInput } from 'react-native';
 
 const MyFormItem = ({ item, errors, touched, handleChange, handleBlur, values, ...rest }) => {
   return (
     <ViewItem>
         <Item error={errors[item.field] && touched[item.field]}>
-            <FontAwesome5 active name={item.icon} solid/>
+            <FA5 active name={item.icon} solid/>
             <TextInput 
                 autoCapitalize="none" 
                 placeholder={item.placeholder} 

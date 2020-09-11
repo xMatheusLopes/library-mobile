@@ -1,21 +1,22 @@
 import styled from 'styled-components';
 
-export const HeaderContent = styled.View`
+export const HeaderContent = styled.SafeAreaView`
     display: flex;
     flex-direction: row;
-    width: 100%;
-    top: 50px;
+    width: 90%;
+    z-index: 3;
+    elevation: 3;
     justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-    elevation: 2;
-    padding-left: 16px;
-    padding-right: 16px;
 `; 
 
 export const HeaderContainer = styled.View`
-    z-index: 2;
-    elevation: 2;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    elevation: 3;
 `;
 
 export const Left = styled.View`

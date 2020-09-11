@@ -43,7 +43,7 @@ const Header = ({Right, HeaderTitle, BackButton = false, NavigationParams = null
                 <Title>{HeaderTitle}</Title>
                 <RightButton />
             </HeaderContent>
-            <SvgCss xml={BGHeader} width="100%" style={{position: 'absolute', top: -30, display: 'flex', flex: 1, zIndex: 1}}/>
+            <SvgCss xml={BGHeader} width="100%" style={{position: 'absolute', top: -30, display: 'flex', flex: 1, zIndex: 2}}/>
         </HeaderContainer>
     );
 }

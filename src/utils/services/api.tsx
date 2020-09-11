@@ -3,7 +3,7 @@ import { getSession } from './session';
 import User from '../../user/user.model';
 
 export const api = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'http://192.168.100.208:5000/',
     headers: { 'content-type': 'application/json' }
 });
 

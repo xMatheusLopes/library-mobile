@@ -20,7 +20,8 @@ export const scrollview: ViewStyle = {
 export const MyContent = styled.SafeAreaView`
     flex: 1;
     background-color: ${ Theme.Dark };
-    margin-top: 60px;
+    z-index: 1;
+    elevation: 1;
 `;
 
 export const MyContainer = styled.View`

@@ -56,6 +56,7 @@ const BooksList = ({ books, isBuyable }: {books: IBook[], isBuyable: boolean}) =
                 )}
                 keyExtractor={(item: IBook) => item.id.toString()}
                 numColumns={2}
+                contentContainerStyle={{marginTop: 30}}
             />
         </SafeAreaView>
     )

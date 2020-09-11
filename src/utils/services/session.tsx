@@ -49,7 +49,7 @@ export const checkSession = async () => {
 export const renewSession = async () => {
     try {
         const session = await getSession();
-        let response: any = await fetch(`http://localhost:5000/renew-session/${session.accessKey}`);
+        let response: any = await fetch(`http://192.168.100.208:5000/renew-session/${session.accessKey}`);
         // console.warn(typeof(response), response);
         response = await response.json();
         // console.warn(response);
