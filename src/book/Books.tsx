@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { View, Alert } from 'react-native';
+import { Alert } from 'react-native';
 
 import { Theme } from '../../Theme';
 import { Fab } from 'native-base';

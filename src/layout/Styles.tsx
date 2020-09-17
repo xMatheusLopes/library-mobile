@@ -1,22 +1,23 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
+import { Theme } from '../../Theme';
+import DeviceInfo from 'react-native-device-info';
 
-export const HeaderContent = styled.SafeAreaView`
+export const HeaderContent = styled.View`
     display: flex;
     flex-direction: row;
-    width: 90%;
+    width: 100%;
+    padding-top: 16px;
     z-index: 3;
     elevation: 3;
     justify-content: space-between;
 `; 
 
-export const HeaderContainer = styled.View`
-    display: flex;
+export const HeaderContainer = styled.SafeAreaView`
     width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    elevation: 3;
+    display: flex;
+    position: relative;
+    height: ${DeviceInfo.hasNotch() ? '110px' : '60px'};
+    background-color: ${Theme.Primary}
 `;
 
 export const Left = styled.View`

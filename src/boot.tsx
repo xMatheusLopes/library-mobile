@@ -4,7 +4,7 @@ import { ActivityIndicator, StatusBar } from 'react-native'
 
 // Style
 import { Theme } from '../Theme'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 // Services
 import { getSession, checkSession, renewSession } from './utils/services/session'

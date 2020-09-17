@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 import { 
     Text as NBText,
@@ -37,10 +37,10 @@ export const ActivityIndicator = styled.ActivityIndicator`
 
 
 export const Form = styled.View`
- width: 100%;
- padding: 0;
+    width: 100%;
+    padding: 0;
 `;
 
 export const FA5 = styled(FontAwesome5)`
- margin-right: 6px;
+    margin-right: 6px;
 `;

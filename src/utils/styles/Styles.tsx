@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { Platform, ViewStyle } from 'react-native'
 import { Theme } from '../../../Theme';
 

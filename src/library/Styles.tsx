@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 import { Theme } from '../../Theme';
 
@@ -80,12 +80,13 @@ export const Item = styled(NBItem)`
     padding-horizontal: 10px;
     padding-vertical: 4px;
     border-radius: 8px;
+    margin-top: 15px;
 `;
 
 export const Right = styled.View`
-
+    margin-right: 10px;
 `;
 
 export const Button = styled.TouchableOpacity`
-    
+    width: 10px;
 `;

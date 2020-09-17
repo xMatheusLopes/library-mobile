@@ -4,22 +4,11 @@ import { StyleSheet, KeyboardAvoidingView, ScrollView, StatusBar, View } from 'r
 
 // Native Base
 import {    
-    Content,  
-    Form, 
-    Input,
-    Toast,
-    Header, 
-    Left, 
-    Right, 
-    Body,
-    Title,
-    StyleProvider,
-    Button as NBButton, 
-    Text as NBText
+    Toast
 } from 'native-base';
 
 // Styles
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { 
     Container, 
     ElevatedView, 

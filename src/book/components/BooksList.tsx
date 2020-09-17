@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FlatList, SafeAreaView, View } from 'react-native';
+import { FlatList, SafeAreaView } from 'react-native';
 
 import { Card, Name, Author, Price, Image, PurshasedBtn, BuyBtnView, BuyBtnText, BuyBtn } from '../../library/Styles';
 import { formatCurrency } from '../../utils/services/pipes';
@@ -56,7 +56,7 @@ const BooksList = ({ books, isBuyable }: {books: IBook[], isBuyable: boolean}) =
                 )}
                 keyExtractor={(item: IBook) => item.id.toString()}
                 numColumns={2}
-                contentContainerStyle={{marginTop: 30}}
+                contentContainerStyle={{marginTop: 10}}
             />
         </SafeAreaView>
     )

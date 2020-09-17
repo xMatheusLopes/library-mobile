@@ -1,10 +1,10 @@
 // Native
 import React, { useState, useEffect } from 'react'
+import { Image } from 'react-native';
 
 // Native Base
 import {    
-    ActionSheet, 
-
+    ActionSheet
 } from 'native-base';
 
 // Styles

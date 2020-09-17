@@ -58,9 +58,6 @@
 		<string>Roboto_medium.ttf</string>
 		<string>Roboto.ttf</string>
 		<string>rubicon-icon-font.ttf</string>
-	</array>
-    <key>UIAppFonts</key>
-    <array>
         <string>AntDesign.ttf</string>
         <string>Entypo.ttf</string>
         <string>EvilIcons.ttf</string>
@@ -76,6 +73,6 @@
         <string>SimpleLineIcons.ttf</string>
         <string>Octicons.ttf</string>
         <string>Zocial.ttf</string>
-    </array>
+	</array>
 </dict>
 </plist>

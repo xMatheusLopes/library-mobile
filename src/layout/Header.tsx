@@ -5,8 +5,6 @@ import { StatusBar, View } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native'; 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { HeaderContainer, Left, Button, Title, HeaderContent } from './Styles';
-import BGHeader from '../../assets/img/bg-header';
-import { SvgCss } from 'react-native-svg';
 
 const Header = ({Right, HeaderTitle, BackButton = false, NavigationParams = null}) => {
     const navigation = useNavigation();
@@ -37,13 +35,14 @@ const Header = ({Right, HeaderTitle, BackButton = false, NavigationParams = null
 
     return (
         <HeaderContainer>
-            <StatusBar barStyle="dark-content" />
+            <StatusBar barStyle="dark-content" backgroundColor={Theme.Primary}/>
             <HeaderContent>
                 <LeftButton />
                 <Title>{HeaderTitle}</Title>
                 <RightButton />
             </HeaderContent>
-            <SvgCss xml={BGHeader} width="100%" style={{position: 'absolute', top: -30, display: 'flex', flex: 1, zIndex: 2}}/>
+            {/* {DeviceInfo.hasNotch() && <Image source={require('../../assets/img/bg-header-notch.png')} style={{ position: 'absolute', width: '100%', zIndex: 2 }}/>}
+            {!DeviceInfo.hasNotch() && <Image source={require('../../assets/img/bg-header.png')} style={{ position: 'absolute', width: '100%', zIndex: 2 }}/>} */}
         </HeaderContainer>
     );
 }

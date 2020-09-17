@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Animated, StyleSheet } from 'react-native';
+import { Animated } from 'react-native';
 
 import { 
     Form, 
@@ -53,6 +53,8 @@ const library = ({setShowSearch, showSearch, setClicked}) => {
     }
 
     const animatedViewStyles = {
+        zIndex: 4,
+        elevation: 4,
         height: translateYValue.interpolate({
             inputRange: [-100, -80, -60, -40, -20, -10, 1],
             outputRange: [0, 10, 20, 30, 40, 50, 65],
