@@ -6,11 +6,14 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { HeaderContainer, Left, Button, Title, HeaderContent } from './Styles';
 
-const Header = ({Right, HeaderTitle, BackButton = false, NavigationParams = null}) => {
+const Header = (
+    {Right, HeaderTitle, BackButton = false} : 
+    {Right: any, HeaderTitle: string, BackButton: boolean}
+) => {
     const navigation = useNavigation();
 
     const RightButton = () => {
-        return Right ? <Right /> : <View />;
+        return Right ? <Right /> : <View style={{ width: 30 }} />;
     }
 
     const LeftButton = () => {

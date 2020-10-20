@@ -1,8 +1,6 @@
 import styled from 'styled-components/native';
 
 import { 
-    Container as NBContainer,
-    Card as NBCard,
     H2 as NBH2,
     Text as NBText,
  } from 'native-base';

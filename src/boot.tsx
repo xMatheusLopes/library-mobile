@@ -9,7 +9,7 @@ import styled from 'styled-components/native'
 // Services
 import { getSession, checkSession, renewSession } from './utils/services/session'
 
-const boot = ({navigation}) => {
+const boot = ({navigation}: {navigation: any}) => {
 
     const sessionAction = async () => {
         const session = await checkSession()

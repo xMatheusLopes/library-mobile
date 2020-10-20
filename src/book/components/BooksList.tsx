@@ -9,7 +9,7 @@ import IBook from '../Interface'
 
 const BooksList = ({ books, isBuyable }: {books: IBook[], isBuyable: boolean}) => {
 
-    const [auxBooks, setAuxBooks] = useState([]);
+    const [auxBooks, setAuxBooks]: [any, any] = useState([]);
 
     useEffect(() => {
         setAuxBooks(books)

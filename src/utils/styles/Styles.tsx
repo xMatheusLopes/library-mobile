@@ -26,7 +26,8 @@ export const MyContent = styled.SafeAreaView`
 
 export const MyContainer = styled.View`
     flex: 1;
-    background-color: ${ Theme.Dark }
+    background-color: ${ Theme.Dark };
+    padding-bottom: 10px;
 `;
 
 

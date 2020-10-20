@@ -8,7 +8,6 @@ import {
 } from 'native-base';
 
 // Styles
-import styled from 'styled-components/native';
 import { 
     Container, 
     ElevatedView, 
@@ -30,10 +29,10 @@ import User from '../user/user.model';
 import * as Yup from 'yup';
 import MyForm from '../components/MyForm';
 
-const Login = ({navigation}) => {
+const Login = ({navigation}: {navigation: any}) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const submit = async (values) => {
+    const submit = async (values: any) => {
         try {
             setIsSubmitting(true);
             const response = await api.post('login', values);

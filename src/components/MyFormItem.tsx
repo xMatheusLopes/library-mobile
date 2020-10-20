@@ -1,13 +1,14 @@
 import React from 'react';
-import { ViewItem, Item, TextError, FA5 } from './Styles';
+import { ViewItem, Item, TextError, FA5, TextInput } from './Styles';
 
-import { TextInput } from 'react-native';
-
-const MyFormItem = ({ item, errors, touched, handleChange, handleBlur, values, ...rest }) => {
+const MyFormItem = (
+    { item, errors, touched, handleChange, handleBlur, values, ...rest } : 
+    { item: any, errors: Array<string>, touched: any, handleChange: any, handleBlur: any, values: Array<any> 
+} ) => {
   return (
     <ViewItem>
         <Item error={errors[item.field] && touched[item.field]}>
-            <FA5 active name={item.icon} solid/>
+            <FA5 name={item.icon} solid/>
             <TextInput 
                 autoCapitalize="none" 
                 placeholder={item.placeholder} 

@@ -24,6 +24,12 @@ export const Item = styled(NBItem)`
     border-radius: 8px;
     width: 100%;
     margin-left: 0px;
+    height: 70px;
+`;
+
+export const TextInput = styled.TextInput`
+    width: 100%;
+    height: 100%;
 `;
 
 export const ViewAccessButton = styled.View`

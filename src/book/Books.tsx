@@ -12,7 +12,7 @@ import BooksList from './components/BooksList';
 import IBook from './Interface';
 import { MyContainer, MyContent } from '../utils/styles/Styles';
 
-const Books = ({navigation}) => {
+const Books = ({navigation} : {navigation: any}) => {
     const [books, setBooks] = useState<IBook[]>([]);
 
     const loadBooks = async () => {
@@ -39,7 +39,7 @@ const Books = ({navigation}) => {
 
     return (
         <MyContainer>
-            <Header HeaderTitle={'Livros'} Right={null} ></Header>
+            <Header HeaderTitle={'Livros'} Right={null} BackButton={false}></Header>
             <MyContent>
                 { books.length > 0 && <BooksList isBuyable={false} books={books}  />}
                 <FabBtn />

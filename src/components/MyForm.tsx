@@ -11,8 +11,8 @@ import { Theme } from '../../Theme';
 import { Formik } from 'formik';
 import MyFormItem from './MyFormItem';
 
-const MyForm = ({ schema, submit, isSubmitting, items }) => {
-    const AccessButton = ({ handleSubmit, errors }) => {
+const MyForm = ({ schema, submit, isSubmitting, items }: { schema: any, submit: any, isSubmitting: boolean, items: any }) => {
+    const AccessButton = ({ handleSubmit, errors } : { handleSubmit: any, errors: any }) => {
         const hasError = Object.keys(errors).length !== 0;
 
         return (
@@ -30,7 +30,7 @@ const MyForm = ({ schema, submit, isSubmitting, items }) => {
             validationSchema={schema}>
             {(props) => (
                 <Form>
-                    {items.map(item => (
+                    {items.map((item: any) => (
                         <MyFormItem 
                             key={item.key} 
                             item={item} 
