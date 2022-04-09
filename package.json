@@ -20,7 +20,7 @@
     "axios": "^0.20.0",
     "bufferutil": "^4.0.1",
     "formik": "^2.1.5",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "native-base": "^2.13.14",
     "react": "16.13.1",
     "react-native": "0.63.2",
